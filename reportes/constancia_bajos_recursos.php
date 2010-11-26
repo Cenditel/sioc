@@ -72,7 +72,7 @@
  * Documentos:
  * @author Leonardo Lobo <leonardolelectiva@gmail.com>
  * Asesoría y apoyo:
- * @author Leonardo Caballero <leonardocaballero@gmail.com>
+ * @author Leonardo J. Caballero G. <leonardocaballero@gmail.com>
  * Durante le proceso académico para la obtención del título
  * Ingeniero en Informática
  * Programa Nacional de Formación en Informática
