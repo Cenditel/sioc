@@ -87,7 +87,7 @@
 define("P4A_LOCALE", 'es_VE');
 
 // Connect to the database (if you want you can add "?charset=YOURCHARSET" to the DSN)
-define("P4A_DSN", 'pgsql://carbonara:carbonara@localhost/apoyacomunidad');
+define("P4A_DSN", 'pgsql://usuario:usuario@localhost/apoyacomunidad');
 
 // Enable logging and profiling of all DB actions
 //define("P4A_DB_PROFILE", true);
