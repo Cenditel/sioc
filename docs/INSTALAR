@@ -1,0 +1,14 @@
+Proceso de instalación
+
+Deberá descargar el código del Framework P4A en su versión 3.4.1 de
+http://sourceforge.net/projects/p4a/files/p4a/3.4.1/ e instalarlo en la
+carpeta que utiliza Apache para correr aplicaciones web.
+
+Luego, deberá copiar el código de la aplicación ésta aplicación en la
+carpeta applications del Framework P4A.
+
+Crear una BD en postgresql llamada 'apoyacomunidad' con el usuario y contraseña 'usuario'
+, o sí desea colocarle el nombre el suyo propio, deberá cambiarlo en el DSN del
+proyecto, que está en el index.php de la carpeta raiz de la aplicación. Encontrará
+algunos datos de prueba que le servirán para darse una idea de qué es el sistema y 
+cómo uilizarlo.
