@@ -9,6 +9,12 @@ carpeta applications del Framework P4A.
 
 Crear una BD en postgresql llamada 'apoyacomunidad' con el usuario y contraseña 'usuario'
 , o sí desea colocarle el nombre el suyo propio, deberá cambiarlo en el DSN del
-proyecto, que está en el index.php de la carpeta raiz de la aplicación. Encontrará
-algunos datos de prueba que le servirán para darse una idea de qué es el sistema y 
+proyecto, que está en el index.php de la carpeta raiz de la aplicación.
+
+Ejecutar el script ubicado en la carpeta _private para crear la estructura
+de la BD y generar unos datos iniciales.Encontrará algunos datos de
+prueba que le servirán para darse una idea de qué es el sistema y
 cómo uilizarlo.
+
+Se crea un usuario con amplios privilegios
+admin:admin
