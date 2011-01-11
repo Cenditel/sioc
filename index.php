@@ -86,8 +86,27 @@
 // Select application's locale
 define("P4A_LOCALE", 'es_VE');
 
+// Engine Database Connection type
+define("P4A_DSN_ENGINEDB", "pgsql");
+
+// Database User
+define("P4A_DSN_USER", "usuario");
+
+// Database Password 
+define("P4A_DSN_PASSWORD", "usuario");
+
+// Database Host
+define("P4A_DSN_HOST", "localhost");
+
+// Database Name 
+define("P4A_DSN_DB", "sioc_bd");
+
+// Database Port Connection
+define("P4A_DSN_PORT", "5432");
+
 // Connect to the database (if you want you can add "?charset=YOURCHARSET" to the DSN)
-define("P4A_DSN", 'pgsql://usuario:usuario@localhost/apoyacomunidad');
+//define("P4A_DSN", 'pgsql://usuario:usuario@localhost/apoyacomunidad');
+define("P4A_DSN", "".P4A_DSN_ENGINEDB."://".P4A_DSN_USER.":".P4A_DSN_PASSWORD."@".P4A_DSN_HOST."/".P4A_DSN_DB."");
 
 // Enable logging and profiling of all DB actions
 //define("P4A_DB_PROFILE", true);
@@ -102,7 +121,7 @@ define("P4A_DSN", 'pgsql://usuario:usuario@localhost/apoyacomunidad');
 // Path (on server) where P4A will write all code transferred via AJAX
 // define("P4A_AJAX_DEBUG", "/tmp/p4a_ajax_debug.txt");
 
-require_once dirname(__FILE__) . '/../../p4a.php';
+require_once 'p4a.php';
 
 // Check Installation and configuration.
 // This lines should be removed after the first run.
