@@ -80,6 +80,14 @@ Descargar el código fuente del SIOC
 
       # nano /var/www/sioc/index.php
 
+     Definir permisos de escritura al directorio raiz. TODO
+
+      # chown root.www-data -R /var/www/sioc/
+
+     Definir permisos de escritura a los directorios uploads/tmp. TODO
+
+      # chmod -R /var/www/sioc/uploads/tmp
+
 Configuraciones de la Base de Datos 
 
     Debe iniciar sesión como usuario administrador postgresql: 
