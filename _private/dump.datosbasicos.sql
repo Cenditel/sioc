@@ -9,59 +9,59 @@ SET client_min_messages = warning;
 SET escape_string_warning = off;
 
 --
--- Name: auditoria; Type: SCHEMA; Schema: -; Owner: carbonara
+-- Name: auditoria; Type: SCHEMA; Schema: -; Owner: usuario
 --
 
 CREATE SCHEMA auditoria;
 
 
-ALTER SCHEMA auditoria OWNER TO carbonara;
+ALTER SCHEMA auditoria OWNER TO usuario;
 
 --
--- Name: SCHEMA auditoria; Type: COMMENT; Schema: -; Owner: carbonara
+-- Name: SCHEMA auditoria; Type: COMMENT; Schema: -; Owner: usuario
 --
 
 COMMENT ON SCHEMA auditoria IS 'Esquema que sólo será utilizado internamente por la BD para registrar el histórico de los movimientos';
 
 
 --
--- Name: cc1; Type: SCHEMA; Schema: -; Owner: carbonara
+-- Name: cc1; Type: SCHEMA; Schema: -; Owner: usuario
 --
 
 CREATE SCHEMA cc1;
 
 
-ALTER SCHEMA cc1 OWNER TO carbonara;
+ALTER SCHEMA cc1 OWNER TO usuario;
 
 --
--- Name: SCHEMA cc1; Type: COMMENT; Schema: -; Owner: carbonara
+-- Name: SCHEMA cc1; Type: COMMENT; Schema: -; Owner: usuario
 --
 
 COMMENT ON SCHEMA cc1 IS 'Consejo Comunal Dr. Ramón Parra Picón. Pedregosa Alta';
 
 
 --
--- Name: encuestas; Type: SCHEMA; Schema: -; Owner: carbonara
+-- Name: encuestas; Type: SCHEMA; Schema: -; Owner: usuario
 --
 
 CREATE SCHEMA encuestas;
 
 
-ALTER SCHEMA encuestas OWNER TO carbonara;
+ALTER SCHEMA encuestas OWNER TO usuario;
 
 --
--- Name: plpgsql; Type: PROCEDURAL LANGUAGE; Schema: -; Owner: carbonara
+-- Name: plpgsql; Type: PROCEDURAL LANGUAGE; Schema: -; Owner: usuario
 --
 
 CREATE PROCEDURAL LANGUAGE plpgsql;
 
 
-ALTER PROCEDURAL LANGUAGE plpgsql OWNER TO carbonara;
+ALTER PROCEDURAL LANGUAGE plpgsql OWNER TO usuario;
 
 SET search_path = public, pg_catalog;
 
 --
--- Name: auditoria(); Type: FUNCTION; Schema: public; Owner: carbonara
+-- Name: auditoria(); Type: FUNCTION; Schema: public; Owner: usuario
 --
 
 CREATE FUNCTION auditoria() RETURNS trigger
@@ -93,7 +93,7 @@ $$
     LANGUAGE plpgsql;
 
 
-ALTER FUNCTION public.auditoria() OWNER TO carbonara;
+ALTER FUNCTION public.auditoria() OWNER TO usuario;
 
 SET search_path = auditoria, pg_catalog;
 
@@ -102,7 +102,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: historico; Type: TABLE; Schema: auditoria; Owner: carbonara; Tablespace:
+-- Name: historico; Type: TABLE; Schema: auditoria; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE historico (
@@ -114,38 +114,38 @@ CREATE TABLE historico (
 );
 
 
-ALTER TABLE auditoria.historico OWNER TO carbonara;
+ALTER TABLE auditoria.historico OWNER TO usuario;
 
 --
--- Name: COLUMN historico.usuario; Type: COMMENT; Schema: auditoria; Owner: carbonara
+-- Name: COLUMN historico.usuario; Type: COMMENT; Schema: auditoria; Owner: usuario
 --
 
 COMMENT ON COLUMN historico.usuario IS 'Usuario que realiza la operación';
 
 
 --
--- Name: COLUMN historico.fecha; Type: COMMENT; Schema: auditoria; Owner: carbonara
+-- Name: COLUMN historico.fecha; Type: COMMENT; Schema: auditoria; Owner: usuario
 --
 
 COMMENT ON COLUMN historico.fecha IS 'Momento en el que se realiza la operación';
 
 
 --
--- Name: COLUMN historico.id_new; Type: COMMENT; Schema: auditoria; Owner: carbonara
+-- Name: COLUMN historico.id_new; Type: COMMENT; Schema: auditoria; Owner: usuario
 --
 
 COMMENT ON COLUMN historico.id_new IS 'En caso de ser una inserción o actualización, el valor del identificador';
 
 
 --
--- Name: COLUMN historico.id_old; Type: COMMENT; Schema: auditoria; Owner: carbonara
+-- Name: COLUMN historico.id_old; Type: COMMENT; Schema: auditoria; Owner: usuario
 --
 
 COMMENT ON COLUMN historico.id_old IS 'En caso de ser una modificación o eliminación, el valor del identificador';
 
 
 --
--- Name: COLUMN historico.tabla; Type: COMMENT; Schema: auditoria; Owner: carbonara
+-- Name: COLUMN historico.tabla; Type: COMMENT; Schema: auditoria; Owner: usuario
 --
 
 COMMENT ON COLUMN historico.tabla IS 'Tabla sobre la cual se realiza la operación';
@@ -154,7 +154,7 @@ COMMENT ON COLUMN historico.tabla IS 'Tabla sobre la cual se realiza la operaci�
 SET search_path = cc1, pg_catalog;
 
 --
--- Name: crear_usuarios; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: crear_usuarios; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE crear_usuarios (
@@ -168,24 +168,24 @@ CREATE TABLE crear_usuarios (
 );
 
 
-ALTER TABLE cc1.crear_usuarios OWNER TO carbonara;
+ALTER TABLE cc1.crear_usuarios OWNER TO usuario;
 
 --
--- Name: TABLE crear_usuarios; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE crear_usuarios; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE crear_usuarios IS 'Tabla para que los usuarios que haran las pruebas del sistema';
 
 
 --
--- Name: COLUMN crear_usuarios.fregistro; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN crear_usuarios.fregistro; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN crear_usuarios.fregistro IS 'Feche en que se registra el usuario';
 
 
 --
--- Name: crear_usuarios_cedula_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: crear_usuarios_cedula_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE crear_usuarios_cedula_seq
@@ -195,17 +195,17 @@ CREATE SEQUENCE crear_usuarios_cedula_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.crear_usuarios_cedula_seq OWNER TO carbonara;
+ALTER TABLE cc1.crear_usuarios_cedula_seq OWNER TO usuario;
 
 --
--- Name: crear_usuarios_cedula_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: crear_usuarios_cedula_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('crear_usuarios_cedula_seq', 62, true);
 
 
 --
--- Name: menu; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: menu; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE menu (
@@ -229,24 +229,24 @@ CREATE TABLE menu (
 );
 
 
-ALTER TABLE cc1.menu OWNER TO carbonara;
+ALTER TABLE cc1.menu OWNER TO usuario;
 
 --
--- Name: COLUMN menu.usr; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN menu.usr; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN menu.usr IS 'Usuario que realiza la transaccción';
 
 
 --
--- Name: COLUMN menu.ip; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN menu.ip; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN menu.ip IS 'Dirección IP desde donde se realiza la transacción';
 
 
 --
--- Name: menu_id_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: menu_id_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE menu_id_seq
@@ -256,24 +256,24 @@ CREATE SEQUENCE menu_id_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.menu_id_seq OWNER TO carbonara;
+ALTER TABLE cc1.menu_id_seq OWNER TO usuario;
 
 --
--- Name: menu_id_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: menu_id_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE menu_id_seq OWNED BY menu.id;
 
 
 --
--- Name: menu_id_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: menu_id_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('menu_id_seq', 101, true);
 
 
 --
--- Name: tabla0; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla0; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla0 (
@@ -285,31 +285,31 @@ CREATE TABLE tabla0 (
 );
 
 
-ALTER TABLE cc1.tabla0 OWNER TO carbonara;
+ALTER TABLE cc1.tabla0 OWNER TO usuario;
 
 --
--- Name: TABLE tabla0; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla0; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla0 IS 'censo';
 
 
 --
--- Name: COLUMN tabla0.tabla1_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla0.tabla1_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla0.tabla1_campo1 IS 'identificador único. puede servir comor contador';
 
 
 --
--- Name: COLUMN tabla0.tabla1_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla0.tabla1_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla0.tabla1_campo2 IS 'nombre';
 
 
 --
--- Name: tabla1; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla1; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla1 (
@@ -321,38 +321,38 @@ CREATE TABLE tabla1 (
 );
 
 
-ALTER TABLE cc1.tabla1 OWNER TO carbonara;
+ALTER TABLE cc1.tabla1 OWNER TO usuario;
 
 --
--- Name: TABLE tabla1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla1 IS 'Grado de Instrucción';
 
 
 --
--- Name: COLUMN tabla1.tabla1_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla1.tabla1_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla1.tabla1_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla1.tabla1_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla1.tabla1_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla1.tabla1_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla1.tabla1_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla1.tabla1_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla1.tabla1_campo3 IS 'Visible';
 
 
 --
--- Name: tabla10; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla10; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla10 (
@@ -364,38 +364,38 @@ CREATE TABLE tabla10 (
 );
 
 
-ALTER TABLE cc1.tabla10 OWNER TO carbonara;
+ALTER TABLE cc1.tabla10 OWNER TO usuario;
 
 --
--- Name: TABLE tabla10; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla10; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla10 IS 'Tenencia de la vivienda';
 
 
 --
--- Name: COLUMN tabla10.tabla10_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla10.tabla10_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla10.tabla10_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla10.tabla10_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla10.tabla10_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla10.tabla10_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla10.tabla10_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla10.tabla10_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla10.tabla10_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla10_tabla10_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla10_tabla10_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla10_tabla10_campo1_seq
@@ -405,24 +405,24 @@ CREATE SEQUENCE tabla10_tabla10_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla10_tabla10_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla10_tabla10_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla10_tabla10_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla10_tabla10_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla10_tabla10_campo1_seq OWNED BY tabla10.tabla10_campo1;
 
 
 --
--- Name: tabla10_tabla10_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla10_tabla10_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla10_tabla10_campo1_seq', 4, true);
 
 
 --
--- Name: tabla11; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla11; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla11 (
@@ -434,38 +434,38 @@ CREATE TABLE tabla11 (
 );
 
 
-ALTER TABLE cc1.tabla11 OWNER TO carbonara;
+ALTER TABLE cc1.tabla11 OWNER TO usuario;
 
 --
--- Name: TABLE tabla11; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla11; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla11 IS 'Material predominante de las paredes exteriores';
 
 
 --
--- Name: COLUMN tabla11.tabla11_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla11.tabla11_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla11.tabla11_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla11.tabla11_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla11.tabla11_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla11.tabla11_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla11.tabla11_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla11.tabla11_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla11.tabla11_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla11_tabla11_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla11_tabla11_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla11_tabla11_campo1_seq
@@ -475,24 +475,24 @@ CREATE SEQUENCE tabla11_tabla11_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla11_tabla11_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla11_tabla11_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla11_tabla11_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla11_tabla11_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla11_tabla11_campo1_seq OWNED BY tabla11.tabla11_campo1;
 
 
 --
--- Name: tabla11_tabla11_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla11_tabla11_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla11_tabla11_campo1_seq', 2, true);
 
 
 --
--- Name: tabla12; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla12; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla12 (
@@ -503,45 +503,45 @@ CREATE TABLE tabla12 (
 );
 
 
-ALTER TABLE cc1.tabla12 OWNER TO carbonara;
+ALTER TABLE cc1.tabla12 OWNER TO usuario;
 
 --
--- Name: TABLE tabla12; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla12; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla12 IS 'Comité';
 
 
 --
--- Name: COLUMN tabla12.tabla12_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla12.tabla12_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla12.tabla12_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla12.tabla12_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla12.tabla12_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla12.tabla12_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla12.fregistro; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla12.fregistro; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla12.fregistro IS 'fecha de registro';
 
 
 --
--- Name: COLUMN tabla12.tabla12_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla12.tabla12_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla12.tabla12_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla12_tabla12_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla12_tabla12_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla12_tabla12_campo1_seq
@@ -551,24 +551,24 @@ CREATE SEQUENCE tabla12_tabla12_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla12_tabla12_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla12_tabla12_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla12_tabla12_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla12_tabla12_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla12_tabla12_campo1_seq OWNED BY tabla12.tabla12_campo1;
 
 
 --
--- Name: tabla12_tabla12_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla12_tabla12_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla12_tabla12_campo1_seq', 42, true);
 
 
 --
--- Name: tabla13; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla13; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla13 (
@@ -580,38 +580,38 @@ CREATE TABLE tabla13 (
 );
 
 
-ALTER TABLE cc1.tabla13 OWNER TO carbonara;
+ALTER TABLE cc1.tabla13 OWNER TO usuario;
 
 --
--- Name: TABLE tabla13; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla13; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla13 IS 'Sector donde vive';
 
 
 --
--- Name: COLUMN tabla13.tabla13_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla13.tabla13_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla13.tabla13_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla13.tabla13_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla13.tabla13_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla13.tabla13_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla13.tabla13_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla13.tabla13_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla13.tabla13_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla13_tabla13_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla13_tabla13_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla13_tabla13_campo1_seq
@@ -621,24 +621,24 @@ CREATE SEQUENCE tabla13_tabla13_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla13_tabla13_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla13_tabla13_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla13_tabla13_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla13_tabla13_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla13_tabla13_campo1_seq OWNED BY tabla13.tabla13_campo1;
 
 
 --
--- Name: tabla13_tabla13_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla13_tabla13_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla13_tabla13_campo1_seq', 8, true);
 
 
 --
--- Name: tabla14; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla14; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla14 (
@@ -666,164 +666,164 @@ CREATE TABLE tabla14 (
 );
 
 
-ALTER TABLE cc1.tabla14 OWNER TO carbonara;
+ALTER TABLE cc1.tabla14 OWNER TO usuario;
 
 --
--- Name: TABLE tabla14; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla14; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla14 IS 'Vivienda: Ubicación y georeferenciación';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo2 IS 'Sector';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo3 IS 'Nombre de la vivienda';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo4; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo4; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo4 IS 'Latitud';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo5; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo5; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo5 IS 'Longitud';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo6; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo6; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo6 IS 'Fecha de registro';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo7; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo7; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo7 IS 'Activo';
 
 
 --
--- Name: COLUMN tabla14.tabla7_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla7_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla7_campo1 IS 'Tipo de Vivienda';
 
 
 --
--- Name: COLUMN tabla14.tabla10_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla10_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla10_campo1 IS 'Tenencia de la Vivienda';
 
 
 --
--- Name: COLUMN tabla14.tabla8_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla8_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla8_campo1 IS 'Material predominante del piso';
 
 
 --
--- Name: COLUMN tabla14.tabla9_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla9_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla9_campo1 IS 'Material predominante del techo';
 
 
 --
--- Name: COLUMN tabla14.tabla11_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla11_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla11_campo1 IS 'Material predominante de las paredes exteriores';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo8; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo8; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo8 IS 'Número de habitaciones';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo9; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo9; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo9 IS 'Posee Sala';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo10; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo10; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo10 IS 'Posee cocina';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo11; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo11; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo11 IS 'Número de grupos familiares que residen en la vivienda';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo12; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo12; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo12 IS 'Requiere de algún arreglo o modificación';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo13; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo13; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo13 IS 'Explicar arreglo o modificación';
 
 
 --
--- Name: COLUMN tabla14.tabla15_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla15_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla15_campo1 IS 'Disposición de aguas servidas';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo14; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo14; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo14 IS 'Calle o Avenida';
 
 
 --
--- Name: COLUMN tabla14.tabla14_campo15; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla14.tabla14_campo15; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla14.tabla14_campo15 IS 'Número de la vivienda';
 
 
 --
--- Name: tabla14_tabla14_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla14_tabla14_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla14_tabla14_campo1_seq
@@ -833,24 +833,24 @@ CREATE SEQUENCE tabla14_tabla14_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla14_tabla14_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla14_tabla14_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla14_tabla14_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla14_tabla14_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla14_tabla14_campo1_seq OWNED BY tabla14.tabla14_campo1;
 
 
 --
--- Name: tabla14_tabla14_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla14_tabla14_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla14_tabla14_campo1_seq', 15, true);
 
 
 --
--- Name: tabla15; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla15; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla15 (
@@ -862,38 +862,38 @@ CREATE TABLE tabla15 (
 );
 
 
-ALTER TABLE cc1.tabla15 OWNER TO carbonara;
+ALTER TABLE cc1.tabla15 OWNER TO usuario;
 
 --
--- Name: TABLE tabla15; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla15; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla15 IS 'Disposición de aguas servidas';
 
 
 --
--- Name: COLUMN tabla15.tabla15_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla15.tabla15_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla15.tabla15_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla15.tabla15_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla15.tabla15_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla15.tabla15_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla15.tabla15_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla15.tabla15_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla15.tabla15_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla15_tabla15_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla15_tabla15_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla15_tabla15_campo1_seq
@@ -904,24 +904,24 @@ CREATE SEQUENCE tabla15_tabla15_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla15_tabla15_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla15_tabla15_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla15_tabla15_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla15_tabla15_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla15_tabla15_campo1_seq OWNED BY tabla15.tabla15_campo1;
 
 
 --
--- Name: tabla15_tabla15_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla15_tabla15_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla15_tabla15_campo1_seq', 1, false);
 
 
 --
--- Name: tabla16; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla16; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla16 (
@@ -933,38 +933,38 @@ CREATE TABLE tabla16 (
 );
 
 
-ALTER TABLE cc1.tabla16 OWNER TO carbonara;
+ALTER TABLE cc1.tabla16 OWNER TO usuario;
 
 --
--- Name: TABLE tabla16; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla16; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla16 IS 'Servicios básicos';
 
 
 --
--- Name: COLUMN tabla16.tabla16_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla16.tabla16_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla16.tabla16_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla16.tabla16_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla16.tabla16_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla16.tabla16_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla16.tabla16_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla16.tabla16_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla16.tabla16_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla16_tabla16_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla16_tabla16_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla16_tabla16_campo1_seq
@@ -975,24 +975,24 @@ CREATE SEQUENCE tabla16_tabla16_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla16_tabla16_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla16_tabla16_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla16_tabla16_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla16_tabla16_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla16_tabla16_campo1_seq OWNED BY tabla16.tabla16_campo1;
 
 
 --
--- Name: tabla16_tabla16_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla16_tabla16_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla16_tabla16_campo1_seq', 1, false);
 
 
 --
--- Name: tabla17; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla17; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla17 (
@@ -1004,52 +1004,52 @@ CREATE TABLE tabla17 (
 );
 
 
-ALTER TABLE cc1.tabla17 OWNER TO carbonara;
+ALTER TABLE cc1.tabla17 OWNER TO usuario;
 
 --
--- Name: TABLE tabla17; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla17; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla17 IS 'Voceros de Unidades';
 
 
 --
--- Name: COLUMN tabla17.tabla17_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla17.tabla17_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla17.tabla17_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla17.tabla20_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla17.tabla20_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla17.tabla20_campo2 IS 'Cédula. Debe ser habitante de la comunidad';
 
 
 --
--- Name: COLUMN tabla17.tabla12_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla17.tabla12_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla17.tabla12_campo1 IS 'Comité o Unidad';
 
 
 --
--- Name: COLUMN tabla17.fregistro; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla17.fregistro; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla17.fregistro IS 'fecha de registro';
 
 
 --
--- Name: COLUMN tabla17.tabla17_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla17.tabla17_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla17.tabla17_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla17_tabla17_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla17_tabla17_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla17_tabla17_campo1_seq
@@ -1059,24 +1059,24 @@ CREATE SEQUENCE tabla17_tabla17_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla17_tabla17_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla17_tabla17_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla17_tabla17_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla17_tabla17_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla17_tabla17_campo1_seq OWNED BY tabla17.tabla17_campo1;
 
 
 --
--- Name: tabla17_tabla17_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla17_tabla17_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla17_tabla17_campo1_seq', 24, true);
 
 
 --
--- Name: tabla18; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla18; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla18 (
@@ -1088,38 +1088,38 @@ CREATE TABLE tabla18 (
 );
 
 
-ALTER TABLE cc1.tabla18 OWNER TO carbonara;
+ALTER TABLE cc1.tabla18 OWNER TO usuario;
 
 --
--- Name: TABLE tabla18; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla18; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla18 IS 'Situación Laboral';
 
 
 --
--- Name: COLUMN tabla18.tabla18_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla18.tabla18_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla18.tabla18_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla18.tabla18_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla18.tabla18_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla18.tabla18_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla18.tabla18_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla18.tabla18_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla18.tabla18_campo3 IS 'Visible';
 
 
 --
--- Name: tabla18_campo1_seq1; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla18_campo1_seq1; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla18_campo1_seq1
@@ -1129,24 +1129,24 @@ CREATE SEQUENCE tabla18_campo1_seq1
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla18_campo1_seq1 OWNER TO carbonara;
+ALTER TABLE cc1.tabla18_campo1_seq1 OWNER TO usuario;
 
 --
--- Name: tabla18_campo1_seq1; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla18_campo1_seq1; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla18_campo1_seq1 OWNED BY tabla18.tabla18_campo1;
 
 
 --
--- Name: tabla18_campo1_seq1; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla18_campo1_seq1; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla18_campo1_seq1', 6, true);
 
 
 --
--- Name: tabla18_tabla18_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla18_tabla18_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla18_tabla18_campo1_seq
@@ -1156,17 +1156,17 @@ CREATE SEQUENCE tabla18_tabla18_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla18_tabla18_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla18_tabla18_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla18_tabla18_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla18_tabla18_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla18_tabla18_campo1_seq', 4, true);
 
 
 --
--- Name: tabla19; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla19; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla19 (
@@ -1178,38 +1178,38 @@ CREATE TABLE tabla19 (
 );
 
 
-ALTER TABLE cc1.tabla19 OWNER TO carbonara;
+ALTER TABLE cc1.tabla19 OWNER TO usuario;
 
 --
--- Name: TABLE tabla19; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla19; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla19 IS 'Misiones';
 
 
 --
--- Name: COLUMN tabla19.tabla19_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla19.tabla19_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla19.tabla19_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla19.tabla19_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla19.tabla19_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla19.tabla19_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla19.tabla19_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla19.tabla19_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla19.tabla19_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla19_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla19_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla19_campo1_seq
@@ -1220,24 +1220,24 @@ CREATE SEQUENCE tabla19_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla19_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla19_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla19_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla19_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla19_campo1_seq OWNED BY tabla19.tabla19_campo1;
 
 
 --
--- Name: tabla19_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla19_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla19_campo1_seq', 1, false);
 
 
 --
--- Name: tabla1_tabla1_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla1_tabla1_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla1_tabla1_campo1_seq
@@ -1247,24 +1247,24 @@ CREATE SEQUENCE tabla1_tabla1_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla1_tabla1_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla1_tabla1_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla1_tabla1_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla1_tabla1_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla1_tabla1_campo1_seq OWNED BY tabla0.tabla1_campo1;
 
 
 --
--- Name: tabla1_tabla1_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla1_tabla1_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla1_tabla1_campo1_seq', 1, true);
 
 
 --
--- Name: tabla1_tabla1_campo1_seq1; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla1_tabla1_campo1_seq1; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla1_tabla1_campo1_seq1
@@ -1274,24 +1274,24 @@ CREATE SEQUENCE tabla1_tabla1_campo1_seq1
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla1_tabla1_campo1_seq1 OWNER TO carbonara;
+ALTER TABLE cc1.tabla1_tabla1_campo1_seq1 OWNER TO usuario;
 
 --
--- Name: tabla1_tabla1_campo1_seq1; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla1_tabla1_campo1_seq1; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla1_tabla1_campo1_seq1 OWNED BY tabla1.tabla1_campo1;
 
 
 --
--- Name: tabla1_tabla1_campo1_seq1; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla1_tabla1_campo1_seq1; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla1_tabla1_campo1_seq1', 14, true);
 
 
 --
--- Name: tabla2; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla2; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla2 (
@@ -1303,38 +1303,38 @@ CREATE TABLE tabla2 (
 );
 
 
-ALTER TABLE cc1.tabla2 OWNER TO carbonara;
+ALTER TABLE cc1.tabla2 OWNER TO usuario;
 
 --
--- Name: TABLE tabla2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla2 IS 'Ocupación';
 
 
 --
--- Name: COLUMN tabla2.tabla2_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla2.tabla2_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla2.tabla2_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla2.tabla2_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla2.tabla2_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla2.tabla2_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla2.tabla2_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla2.tabla2_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla2.tabla2_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla20; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla20; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla20 (
@@ -1413,472 +1413,472 @@ CREATE TABLE tabla20 (
 );
 
 
-ALTER TABLE cc1.tabla20 OWNER TO carbonara;
+ALTER TABLE cc1.tabla20 OWNER TO usuario;
 
 --
--- Name: TABLE tabla20; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla20; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla20 IS 'Registro de los habitantes del sector, residenciados y censados en el Consejo Comunal';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo2 IS 'Cédula de Identidad';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo3 IS 'Nombre(s)';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo4; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo4; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo4 IS 'Apellido(s)';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo5; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo5; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo5 IS 'Edad';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo6; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo6; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo6 IS 'Fecha de Nacimiento';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo7; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo7; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo7 IS 'Sexo o genero';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo8; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo8; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo8 IS 'Grado de Instrucción';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo9; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo9; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo9 IS 'Sn Documentos de identifiación (cédula, partida de nacimiento, etc)';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo10; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo10; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo10 IS 'Estudia actualmente';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo13; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo13; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo13 IS 'Trabaja actualmente';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo14; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo14; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo14 IS 'Correo Electrónico';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo15; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo15; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo15 IS 'Posee algún terreno';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo16; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo16; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo16 IS 'Lugar del terreno que posee';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo17; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo17; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo17 IS 'Tiene Ley de Política Habitacional';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo18; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo18; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo18 IS 'Tiene Seguro';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo19; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo19; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo19 IS 'Tiene vehículo';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo20; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo20; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo20 IS 'Padece de alguna enfermedad';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo21; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo21; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo21 IS 'Cuál enfermedad padece';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo22; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo22; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo22 IS 'Requiere tratamiento de por vida';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo23; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo23; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo23 IS 'Cuál tratamiento de por vida requiere';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo24; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo24; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo24 IS 'Requiere algún material médico quirúrgico';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo25; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo25; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo25 IS 'Cuál material médico quirúrgico requiere';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo26; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo26; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo26 IS 'Requiere de alguna operación';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo27; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo27; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo27 IS 'Cuál operación requiere';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo28; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo28; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo28 IS 'Requiere algún servicio de salud';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo29; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo29; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo29 IS 'Cuál servicio de salud requiere';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo30; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo30; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo30 IS 'Está embrazada';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo31; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo31; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo31 IS 'Sabe cómo actuar en caso de una emergencia';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo32; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo32; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo32 IS 'Conoce los organismos a quien acudir en caso de una emergencia';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo33; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo33; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo33 IS 'Cuál organismo conoce en caso de una emergencia';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo34; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo34; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo34 IS 'Conoce los números de emergencia';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo35; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo35; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo35 IS 'Cuál número de emergencia conoce';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo36; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo36; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo36 IS 'a dónde se dirigría en caso de una emergencia';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo37; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo37; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo37 IS 'Ha recibido entrenamiento para casos de emergencia';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo38; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo38; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo38 IS 'Qué entrenamiento ha recibido para casos de emergencia';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo39; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo39; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo39 IS 'Le gustaría tomar talleres para casos de emergencia';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo40; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo40; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo40 IS 'Qué talleres le gustaría tomar para casos de emergencia';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo41; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo41; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo41 IS 'Posee alguna habilidad artesanal';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo42; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo42; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo42 IS 'Cuál habilidad artesanal posee';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo43; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo43; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo43 IS 'Desea integrar algún grupo cultural';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo44; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo44; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo44 IS 'Cuál grupo cultural desea integrar';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo45; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo45; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo45 IS 'Qué clase de talleres le gusaría que el INCES dictara en la comunidad';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo46; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo46; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo46 IS 'Qué otros talleres le gustaría que se dictaran en la comunidad';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo47; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo47; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo47 IS 'Cuál considera que es la necesidad prioritaria de su comunidad';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo48; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo48; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo48 IS 'Existe algún problema ambiental en su sector';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo49; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo49; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo49 IS 'cuál problema ambiental existe en su sector';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo50; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo50; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo50 IS 'Desea que exista un espacio para el esparcimiento en su sector';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo51; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo51; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo51 IS 'Especifique qué clase de espacio para el esparcimiento';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo52; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo52; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo52 IS 'Existe algún problema de seguridad en su sector';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo53; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo53; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo53 IS 'Cuál problema de seguridad existe en su sector';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo54; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo54; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo54 IS 'Practica algún deporte';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo55; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo55; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo55 IS 'Qué deporte practica';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo56; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo56; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo56 IS 'Le gustaría practicar algún deporte';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo57; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo57; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo57 IS 'Qué deporte le gustaría practicar';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo58; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo58; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo58 IS 'Percibe problemas de drogas en la comunidad';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo59; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo59; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo59 IS 'Percibe problemas de alcoholismo en la comunidad';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo60; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo60; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo60 IS 'Percibe problemas de delincuencia en la comunidad';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo61; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo61; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo61 IS 'Percibe otro problema en la comunidad';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo62; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo62; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo62 IS 'Le gustaría participar en el Consejo Comunal';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo64; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo64; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo64 IS 'En cuál comité del Consejo Comunal le gustaría participar';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo65; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo65; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo65 IS 'Sabe sí se está implementando alguna Misión en la comunidad';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo66; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo66; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo66 IS 'Se beneficia de alguna Misión';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo67; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo67; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo67 IS 'De cuál Misión se beneficia';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo68; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo68; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo68 IS 'Desea un crédito Socioproductivo';
 
 
 --
--- Name: COLUMN tabla20.tabla20_campo69; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla20.tabla20_campo69; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla20.tabla20_campo69 IS 'Especcifique para que le gustaría un crédito Socioproductivo';
 
 
 --
--- Name: tabla20_tabla20_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla20_tabla20_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla20_tabla20_campo1_seq
@@ -1889,24 +1889,24 @@ CREATE SEQUENCE tabla20_tabla20_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla20_tabla20_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla20_tabla20_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla20_tabla20_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla20_tabla20_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla20_tabla20_campo1_seq OWNED BY tabla20.tabla20_campo1;
 
 
 --
--- Name: tabla20_tabla20_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla20_tabla20_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla20_tabla20_campo1_seq', 1, false);
 
 
 --
--- Name: tabla21; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla21; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla21 (
@@ -1918,38 +1918,38 @@ CREATE TABLE tabla21 (
 );
 
 
-ALTER TABLE cc1.tabla21 OWNER TO carbonara;
+ALTER TABLE cc1.tabla21 OWNER TO usuario;
 
 --
--- Name: TABLE tabla21; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla21; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla21 IS 'Salario Aproximado';
 
 
 --
--- Name: COLUMN tabla21.tabla21_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla21.tabla21_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla21.tabla21_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla21.tabla21_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla21.tabla21_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla21.tabla21_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla21.tabla21_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla21.tabla21_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla21.tabla21_campo3 IS 'Visible';
 
 
 --
--- Name: tabla21_campo1_seq1; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla21_campo1_seq1; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla21_campo1_seq1
@@ -1959,24 +1959,24 @@ CREATE SEQUENCE tabla21_campo1_seq1
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla21_campo1_seq1 OWNER TO carbonara;
+ALTER TABLE cc1.tabla21_campo1_seq1 OWNER TO usuario;
 
 --
--- Name: tabla21_campo1_seq1; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla21_campo1_seq1; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla21_campo1_seq1 OWNED BY tabla21.tabla21_campo1;
 
 
 --
--- Name: tabla21_campo1_seq1; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla21_campo1_seq1; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla21_campo1_seq1', 3, true);
 
 
 --
--- Name: tabla22; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla22; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla22 (
@@ -1988,38 +1988,38 @@ CREATE TABLE tabla22 (
 );
 
 
-ALTER TABLE cc1.tabla22 OWNER TO carbonara;
+ALTER TABLE cc1.tabla22 OWNER TO usuario;
 
 --
--- Name: TABLE tabla22; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla22; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla22 IS 'Estado Civil';
 
 
 --
--- Name: COLUMN tabla22.tabla22_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla22.tabla22_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla22.tabla22_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla22.tabla22_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla22.tabla22_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla22.tabla22_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla22.tabla22_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla22.tabla22_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla22.tabla22_campo3 IS 'Visible';
 
 
 --
--- Name: tabla22_campo1_seq1; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla22_campo1_seq1; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla22_campo1_seq1
@@ -2029,24 +2029,24 @@ CREATE SEQUENCE tabla22_campo1_seq1
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla22_campo1_seq1 OWNER TO carbonara;
+ALTER TABLE cc1.tabla22_campo1_seq1 OWNER TO usuario;
 
 --
--- Name: tabla22_campo1_seq1; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla22_campo1_seq1; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla22_campo1_seq1 OWNED BY tabla22.tabla22_campo1;
 
 
 --
--- Name: tabla22_campo1_seq1; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla22_campo1_seq1; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla22_campo1_seq1', 5, true);
 
 
 --
--- Name: tabla22_tabla22_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla22_tabla22_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla22_tabla22_campo1_seq
@@ -2056,17 +2056,17 @@ CREATE SEQUENCE tabla22_tabla22_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla22_tabla22_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla22_tabla22_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla22_tabla22_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla22_tabla22_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla22_tabla22_campo1_seq', 2, true);
 
 
 --
--- Name: tabla2_id_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla2_id_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla2_id_seq
@@ -2076,17 +2076,17 @@ CREATE SEQUENCE tabla2_id_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla2_id_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla2_id_seq OWNER TO usuario;
 
 --
--- Name: tabla2_id_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla2_id_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla2_id_seq', 12, true);
 
 
 --
--- Name: tabla2_tabla2_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla2_tabla2_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla2_tabla2_campo1_seq
@@ -2096,24 +2096,24 @@ CREATE SEQUENCE tabla2_tabla2_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla2_tabla2_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla2_tabla2_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla2_tabla2_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla2_tabla2_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla2_tabla2_campo1_seq OWNED BY tabla2.tabla2_campo1;
 
 
 --
--- Name: tabla2_tabla2_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla2_tabla2_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla2_tabla2_campo1_seq', 64, true);
 
 
 --
--- Name: tabla3; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla3; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla3 (
@@ -2125,38 +2125,38 @@ CREATE TABLE tabla3 (
 );
 
 
-ALTER TABLE cc1.tabla3 OWNER TO carbonara;
+ALTER TABLE cc1.tabla3 OWNER TO usuario;
 
 --
--- Name: TABLE tabla3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla3 IS 'Profesión';
 
 
 --
--- Name: COLUMN tabla3.tabla3_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla3.tabla3_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla3.tabla3_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla3.tabla3_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla3.tabla3_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla3.tabla3_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla3.tabla3_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla3.tabla3_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla3.tabla3_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla3_tabla3_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla3_tabla3_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla3_tabla3_campo1_seq
@@ -2166,24 +2166,24 @@ CREATE SEQUENCE tabla3_tabla3_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla3_tabla3_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla3_tabla3_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla3_tabla3_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla3_tabla3_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla3_tabla3_campo1_seq OWNED BY tabla3.tabla3_campo1;
 
 
 --
--- Name: tabla3_tabla3_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla3_tabla3_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla3_tabla3_campo1_seq', 4, true);
 
 
 --
--- Name: tabla4; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla4; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla4 (
@@ -2195,38 +2195,38 @@ CREATE TABLE tabla4 (
 );
 
 
-ALTER TABLE cc1.tabla4 OWNER TO carbonara;
+ALTER TABLE cc1.tabla4 OWNER TO usuario;
 
 --
--- Name: TABLE tabla4; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla4; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla4 IS 'Parentesco con el jefe del hogar';
 
 
 --
--- Name: COLUMN tabla4.tabla4_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla4.tabla4_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla4.tabla4_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla4.tabla4_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla4.tabla4_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla4.tabla4_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla4.tabla4_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla4.tabla4_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla4.tabla4_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla4_tabla4_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla4_tabla4_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla4_tabla4_campo1_seq
@@ -2236,24 +2236,24 @@ CREATE SEQUENCE tabla4_tabla4_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla4_tabla4_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla4_tabla4_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla4_tabla4_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla4_tabla4_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla4_tabla4_campo1_seq OWNED BY tabla4.tabla4_campo1;
 
 
 --
--- Name: tabla4_tabla4_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla4_tabla4_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla4_tabla4_campo1_seq', 12, true);
 
 
 --
--- Name: tabla5; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla5; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla5 (
@@ -2265,24 +2265,24 @@ CREATE TABLE tabla5 (
 );
 
 
-ALTER TABLE cc1.tabla5 OWNER TO carbonara;
+ALTER TABLE cc1.tabla5 OWNER TO usuario;
 
 --
--- Name: TABLE tabla5; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla5; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla5 IS 'deportes';
 
 
 --
--- Name: COLUMN tabla5.tabla5_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla5.tabla5_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla5.tabla5_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla5_tabla5_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla5_tabla5_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla5_tabla5_campo1_seq
@@ -2292,24 +2292,24 @@ CREATE SEQUENCE tabla5_tabla5_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla5_tabla5_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla5_tabla5_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla5_tabla5_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla5_tabla5_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla5_tabla5_campo1_seq OWNED BY tabla5.tabla5_campo1;
 
 
 --
--- Name: tabla5_tabla5_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla5_tabla5_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla5_tabla5_campo1_seq', 12, true);
 
 
 --
--- Name: tabla6; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla6; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla6 (
@@ -2321,38 +2321,38 @@ CREATE TABLE tabla6 (
 );
 
 
-ALTER TABLE cc1.tabla6 OWNER TO carbonara;
+ALTER TABLE cc1.tabla6 OWNER TO usuario;
 
 --
--- Name: TABLE tabla6; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla6; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla6 IS 'Enfermedades';
 
 
 --
--- Name: COLUMN tabla6.tabla6_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla6.tabla6_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla6.tabla6_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla6.tabla6_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla6.tabla6_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla6.tabla6_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla6.tabla6_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla6.tabla6_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla6.tabla6_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla6_tabla6_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla6_tabla6_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla6_tabla6_campo1_seq
@@ -2362,24 +2362,24 @@ CREATE SEQUENCE tabla6_tabla6_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla6_tabla6_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla6_tabla6_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla6_tabla6_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla6_tabla6_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla6_tabla6_campo1_seq OWNED BY tabla6.tabla6_campo1;
 
 
 --
--- Name: tabla6_tabla6_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla6_tabla6_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla6_tabla6_campo1_seq', 2, true);
 
 
 --
--- Name: tabla7; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla7; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla7 (
@@ -2391,38 +2391,38 @@ CREATE TABLE tabla7 (
 );
 
 
-ALTER TABLE cc1.tabla7 OWNER TO carbonara;
+ALTER TABLE cc1.tabla7 OWNER TO usuario;
 
 --
--- Name: TABLE tabla7; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla7; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla7 IS 'Tipo de vivienda';
 
 
 --
--- Name: COLUMN tabla7.tabla7_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla7.tabla7_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla7.tabla7_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla7.tabla7_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla7.tabla7_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla7.tabla7_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla7.tabla7_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla7.tabla7_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla7.tabla7_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla7_tabla7_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla7_tabla7_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla7_tabla7_campo1_seq
@@ -2432,24 +2432,24 @@ CREATE SEQUENCE tabla7_tabla7_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla7_tabla7_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla7_tabla7_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla7_tabla7_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla7_tabla7_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla7_tabla7_campo1_seq OWNED BY tabla7.tabla7_campo1;
 
 
 --
--- Name: tabla7_tabla7_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla7_tabla7_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla7_tabla7_campo1_seq', 7, true);
 
 
 --
--- Name: tabla8; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla8; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla8 (
@@ -2461,38 +2461,38 @@ CREATE TABLE tabla8 (
 );
 
 
-ALTER TABLE cc1.tabla8 OWNER TO carbonara;
+ALTER TABLE cc1.tabla8 OWNER TO usuario;
 
 --
--- Name: TABLE tabla8; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla8; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla8 IS 'Material predominante del piso';
 
 
 --
--- Name: COLUMN tabla8.tabla8_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla8.tabla8_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla8.tabla8_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla8.tabla8_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla8.tabla8_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla8.tabla8_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla8.tabla8_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla8.tabla8_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla8.tabla8_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla8_tabla8_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla8_tabla8_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla8_tabla8_campo1_seq
@@ -2502,24 +2502,24 @@ CREATE SEQUENCE tabla8_tabla8_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla8_tabla8_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla8_tabla8_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla8_tabla8_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla8_tabla8_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla8_tabla8_campo1_seq OWNED BY tabla8.tabla8_campo1;
 
 
 --
--- Name: tabla8_tabla8_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla8_tabla8_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla8_tabla8_campo1_seq', 6, true);
 
 
 --
--- Name: tabla9; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla9; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE tabla9 (
@@ -2531,38 +2531,38 @@ CREATE TABLE tabla9 (
 );
 
 
-ALTER TABLE cc1.tabla9 OWNER TO carbonara;
+ALTER TABLE cc1.tabla9 OWNER TO usuario;
 
 --
--- Name: TABLE tabla9; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE tabla9; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE tabla9 IS 'Material predominante del techo';
 
 
 --
--- Name: COLUMN tabla9.tabla9_campo1; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla9.tabla9_campo1; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla9.tabla9_campo1 IS 'identificador';
 
 
 --
--- Name: COLUMN tabla9.tabla9_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla9.tabla9_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla9.tabla9_campo2 IS 'descripción';
 
 
 --
--- Name: COLUMN tabla9.tabla9_campo3; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN tabla9.tabla9_campo3; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN tabla9.tabla9_campo3 IS 'Visible: identifica si un registro es visible';
 
 
 --
--- Name: tabla9_tabla9_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: tabla9_tabla9_campo1_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE tabla9_tabla9_campo1_seq
@@ -2572,24 +2572,24 @@ CREATE SEQUENCE tabla9_tabla9_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.tabla9_tabla9_campo1_seq OWNER TO carbonara;
+ALTER TABLE cc1.tabla9_tabla9_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla9_tabla9_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: tabla9_tabla9_campo1_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE tabla9_tabla9_campo1_seq OWNED BY tabla9.tabla9_campo1;
 
 
 --
--- Name: tabla9_tabla9_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: tabla9_tabla9_campo1_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla9_tabla9_campo1_seq', 2, true);
 
 
 --
--- Name: usuarios; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: usuarios; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE usuarios (
@@ -2606,52 +2606,52 @@ CREATE TABLE usuarios (
 );
 
 
-ALTER TABLE cc1.usuarios OWNER TO carbonara;
+ALTER TABLE cc1.usuarios OWNER TO usuario;
 
 --
--- Name: TABLE usuarios; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: TABLE usuarios; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON TABLE usuarios IS 'Registro de los usuarios que pueden hacer login al sistema';
 
 
 --
--- Name: COLUMN usuarios.tabla20_campo2; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN usuarios.tabla20_campo2; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN usuarios.tabla20_campo2 IS 'Cédula. Debe ser habitante de la comunidad';
 
 
 --
--- Name: COLUMN usuarios.default_mask; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN usuarios.default_mask; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN usuarios.default_mask IS 'máscara por defecto al iniciar sesión';
 
 
 --
--- Name: COLUMN usuarios.nivel_acceso; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN usuarios.nivel_acceso; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN usuarios.nivel_acceso IS 'inicia sin acceso';
 
 
 --
--- Name: COLUMN usuarios.usr; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN usuarios.usr; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN usuarios.usr IS 'Usuario que realiza la transaccción';
 
 
 --
--- Name: COLUMN usuarios.ip; Type: COMMENT; Schema: cc1; Owner: carbonara
+-- Name: COLUMN usuarios.ip; Type: COMMENT; Schema: cc1; Owner: usuario
 --
 
 COMMENT ON COLUMN usuarios.ip IS 'Dirección IP desde donde se realiza la transacción';
 
 
 --
--- Name: usuario_id_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: usuario_id_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE usuario_id_seq
@@ -2661,24 +2661,24 @@ CREATE SEQUENCE usuario_id_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.usuario_id_seq OWNER TO carbonara;
+ALTER TABLE cc1.usuario_id_seq OWNER TO usuario;
 
 --
--- Name: usuario_id_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: carbonara
+-- Name: usuario_id_seq; Type: SEQUENCE OWNED BY; Schema: cc1; Owner: usuario
 --
 
 ALTER SEQUENCE usuario_id_seq OWNED BY usuarios.id;
 
 
 --
--- Name: usuario_id_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: usuario_id_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('usuario_id_seq', 18, true);
 
 
 --
--- Name: usuario_menu; Type: TABLE; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: usuario_menu; Type: TABLE; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE usuario_menu (
@@ -2687,10 +2687,10 @@ CREATE TABLE usuario_menu (
 );
 
 
-ALTER TABLE cc1.usuario_menu OWNER TO carbonara;
+ALTER TABLE cc1.usuario_menu OWNER TO usuario;
 
 --
--- Name: usuarios_id_seq; Type: SEQUENCE; Schema: cc1; Owner: carbonara
+-- Name: usuarios_id_seq; Type: SEQUENCE; Schema: cc1; Owner: usuario
 --
 
 CREATE SEQUENCE usuarios_id_seq
@@ -2700,10 +2700,10 @@ CREATE SEQUENCE usuarios_id_seq
     CACHE 1;
 
 
-ALTER TABLE cc1.usuarios_id_seq OWNER TO carbonara;
+ALTER TABLE cc1.usuarios_id_seq OWNER TO usuario;
 
 --
--- Name: usuarios_id_seq; Type: SEQUENCE SET; Schema: cc1; Owner: carbonara
+-- Name: usuarios_id_seq; Type: SEQUENCE SET; Schema: cc1; Owner: usuario
 --
 
 SELECT pg_catalog.setval('usuarios_id_seq', 3, true);
@@ -2712,7 +2712,7 @@ SELECT pg_catalog.setval('usuarios_id_seq', 3, true);
 SET search_path = encuestas, pg_catalog;
 
 --
--- Name: censo; Type: TABLE; Schema: encuestas; Owner: carbonara; Tablespace:
+-- Name: censo; Type: TABLE; Schema: encuestas; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE censo (
@@ -2793,332 +2793,332 @@ CREATE TABLE censo (
 );
 
 
-ALTER TABLE encuestas.censo OWNER TO carbonara;
+ALTER TABLE encuestas.censo OWNER TO usuario;
 
 --
--- Name: COLUMN censo.agno_comunidad; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.agno_comunidad; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.agno_comunidad IS 'Año en que llegó a la comunidad';
 
 
 --
--- Name: COLUMN censo.vivienda; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.vivienda; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.vivienda IS 'Nombre o número de la vivienda';
 
 
 --
--- Name: COLUMN censo.cual_tratamiento; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.cual_tratamiento; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.cual_tratamiento IS 'En caso de requerir tratamiento de por vida, especificar cuál';
 
 
 --
--- Name: COLUMN censo.cual_material_medico; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.cual_material_medico; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.cual_material_medico IS 'En caso de requerir material médico, especificar cuál';
 
 
 --
--- Name: COLUMN censo.cual_operacion; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.cual_operacion; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.cual_operacion IS 'En caso de requerir operación, especificar cuál';
 
 
 --
--- Name: COLUMN censo.cual_servicio_salud; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.cual_servicio_salud; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.cual_servicio_salud IS 'En caso de requerir servicio de salud, especificar cuál';
 
 
 --
--- Name: COLUMN censo.embarazada; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.embarazada; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.embarazada IS 'En caso de ser Femenino, en edad fertil';
 
 
 --
--- Name: COLUMN censo.tabla20_campo31; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo31; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo31 IS 'Sabe cómo actuar en caso de una emergencia';
 
 
 --
--- Name: COLUMN censo.tabla20_campo32; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo32; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo32 IS 'Conoce los organismos a quien acudir en caso de una emergencia';
 
 
 --
--- Name: COLUMN censo.tabla20_campo33; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo33; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo33 IS 'Cuál organismo conoce en caso de una emergencia';
 
 
 --
--- Name: COLUMN censo.tabla20_campo34; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo34; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo34 IS 'Conoce los números de emergencia';
 
 
 --
--- Name: COLUMN censo.tabla20_campo35; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo35; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo35 IS 'Cuál número de emergencia conoce';
 
 
 --
--- Name: COLUMN censo.tabla20_campo36; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo36; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo36 IS 'a dónde se dirigría en caso de una emergencia';
 
 
 --
--- Name: COLUMN censo.tabla20_campo37; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo37; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo37 IS 'Ha recibido entrenamiento para casos de emergencia';
 
 
 --
--- Name: COLUMN censo.tabla20_campo38; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo38; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo38 IS 'Qué entrenamiento ha recibido para casos de emergencia';
 
 
 --
--- Name: COLUMN censo.tabla20_campo39; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo39; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo39 IS 'Le gustaría tomar talleres para casos de emergencia';
 
 
 --
--- Name: COLUMN censo.tabla20_campo40; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo40; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo40 IS 'Qué talleres le gustaría tomar para casos de emergencia';
 
 
 --
--- Name: COLUMN censo.tabla20_campo41; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo41; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo41 IS 'Posee alguna habilidad artesanal';
 
 
 --
--- Name: COLUMN censo.tabla20_campo42; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo42; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo42 IS 'Cuál habilidad artesanal posee';
 
 
 --
--- Name: COLUMN censo.tabla20_campo43; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo43; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo43 IS 'Desea integrar algún grupo cultural';
 
 
 --
--- Name: COLUMN censo.tabla20_campo44; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo44; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo44 IS 'Cuál grupo cultural desea integrar';
 
 
 --
--- Name: COLUMN censo.tabla20_campo45; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo45; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo45 IS 'Qué clase de talleres le gusaría que el INCES dictara en la comunidad';
 
 
 --
--- Name: COLUMN censo.tabla20_campo46; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo46; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo46 IS 'Qué otros talleres le gustaría que se dictaran en la comunidad';
 
 
 --
--- Name: COLUMN censo.tabla20_campo47; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo47; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo47 IS 'Cuál considera que es la necesidad prioritaria';
 
 
 --
--- Name: COLUMN censo.tabla20_campo48; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo48; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo48 IS 'Existe algún problema ambiental en su sector';
 
 
 --
--- Name: COLUMN censo.tabla20_campo49; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo49; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo49 IS 'cuál problema ambiental existe en su sector';
 
 
 --
--- Name: COLUMN censo.tabla20_campo50; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo50; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo50 IS 'Desea que exista un espacio para el esparcimiento en su sector';
 
 
 --
--- Name: COLUMN censo.tabla20_campo51; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo51; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo51 IS 'Especifique qué clase de espacio para el esparcimiento';
 
 
 --
--- Name: COLUMN censo.tabla20_campo52; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo52; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo52 IS 'Existe algún problema de seguridad en su sector';
 
 
 --
--- Name: COLUMN censo.tabla20_campo53; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo53; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo53 IS 'Cuál problema de seguridad existe';
 
 
 --
--- Name: COLUMN censo.tabla20_campo54; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo54; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo54 IS 'Practica algún deporte';
 
 
 --
--- Name: COLUMN censo.tabla20_campo55; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo55; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo55 IS 'Cuál deporte practica';
 
 
 --
--- Name: COLUMN censo.tabla20_campo56; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo56; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo56 IS 'Le gustaría practicar algún deporte';
 
 
 --
--- Name: COLUMN censo.tabla20_campo57; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo57; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo57 IS 'cuál deporte le gustaría practicar';
 
 
 --
--- Name: COLUMN censo.tabla20_campo58; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo58; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo58 IS 'Percibe problemas de drogas en la comunidad';
 
 
 --
--- Name: COLUMN censo.tabla20_campo59; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo59; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo59 IS 'Percibe problemas de alcoholismo en la comunidad';
 
 
 --
--- Name: COLUMN censo.tabla20_campo60; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo60; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo60 IS 'Percibe problemas de delincuencia en la comunidad';
 
 
 --
--- Name: COLUMN censo.tabla20_campo61; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo61; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo61 IS 'Percibe otro problema en la comunidad';
 
 
 --
--- Name: COLUMN censo.tabla20_campo62; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo62; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo62 IS 'Le gustaría participar en el Consejo Comunal';
 
 
 --
--- Name: COLUMN censo.tabla20_campo63; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo63; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo63 IS 'En cuál comité del Consejo Comunal le gustaría participar';
 
 
 --
--- Name: COLUMN censo.tabla20_campo64; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo64; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo64 IS 'Sabe sí se está implementando alguna Misión en la comunidad';
 
 
 --
--- Name: COLUMN censo.tabla20_campo65; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo65; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo65 IS 'Se beneficia de alguna Misión';
 
 
 --
--- Name: COLUMN censo.tabla20_campo66; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo66; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo66 IS 'De cuál Misión se beneficia';
 
 
 --
--- Name: COLUMN censo.tabla20_campo67; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo67; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo67 IS 'Desea un crédito Socioproductivo';
 
 
 --
--- Name: COLUMN censo.tabla20_campo68; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.tabla20_campo68; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.tabla20_campo68 IS 'Especcifique para que le gustaría un crédito Socioproductivo';
 
 
 --
--- Name: COLUMN censo.cual_enfermedad; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN censo.cual_enfermedad; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN censo.cual_enfermedad IS 'En caso de padecer una enfermedad, especificar cuál';
 
 
 --
--- Name: censo_id_seq; Type: SEQUENCE; Schema: encuestas; Owner: carbonara
+-- Name: censo_id_seq; Type: SEQUENCE; Schema: encuestas; Owner: usuario
 --
 
 CREATE SEQUENCE censo_id_seq
@@ -3128,24 +3128,24 @@ CREATE SEQUENCE censo_id_seq
     CACHE 1;
 
 
-ALTER TABLE encuestas.censo_id_seq OWNER TO carbonara;
+ALTER TABLE encuestas.censo_id_seq OWNER TO usuario;
 
 --
--- Name: censo_id_seq; Type: SEQUENCE OWNED BY; Schema: encuestas; Owner: carbonara
+-- Name: censo_id_seq; Type: SEQUENCE OWNED BY; Schema: encuestas; Owner: usuario
 --
 
 ALTER SEQUENCE censo_id_seq OWNED BY censo.id;
 
 
 --
--- Name: censo_id_seq; Type: SEQUENCE SET; Schema: encuestas; Owner: carbonara
+-- Name: censo_id_seq; Type: SEQUENCE SET; Schema: encuestas; Owner: usuario
 --
 
 SELECT pg_catalog.setval('censo_id_seq', 574, true);
 
 
 --
--- Name: habitantes; Type: TABLE; Schema: encuestas; Owner: carbonara; Tablespace:
+-- Name: habitantes; Type: TABLE; Schema: encuestas; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE habitantes (
@@ -3164,17 +3164,17 @@ CREATE TABLE habitantes (
 );
 
 
-ALTER TABLE encuestas.habitantes OWNER TO carbonara;
+ALTER TABLE encuestas.habitantes OWNER TO usuario;
 
 --
--- Name: COLUMN habitantes.agno_comunidad; Type: COMMENT; Schema: encuestas; Owner: carbonara
+-- Name: COLUMN habitantes.agno_comunidad; Type: COMMENT; Schema: encuestas; Owner: usuario
 --
 
 COMMENT ON COLUMN habitantes.agno_comunidad IS 'Tiempo en años, viviendo en la comunidad';
 
 
 --
--- Name: habitantes_id_seq; Type: SEQUENCE; Schema: encuestas; Owner: carbonara
+-- Name: habitantes_id_seq; Type: SEQUENCE; Schema: encuestas; Owner: usuario
 --
 
 CREATE SEQUENCE habitantes_id_seq
@@ -3185,17 +3185,17 @@ CREATE SEQUENCE habitantes_id_seq
     CACHE 1;
 
 
-ALTER TABLE encuestas.habitantes_id_seq OWNER TO carbonara;
+ALTER TABLE encuestas.habitantes_id_seq OWNER TO usuario;
 
 --
--- Name: habitantes_id_seq; Type: SEQUENCE OWNED BY; Schema: encuestas; Owner: carbonara
+-- Name: habitantes_id_seq; Type: SEQUENCE OWNED BY; Schema: encuestas; Owner: usuario
 --
 
 ALTER SEQUENCE habitantes_id_seq OWNED BY habitantes.id;
 
 
 --
--- Name: habitantes_id_seq; Type: SEQUENCE SET; Schema: encuestas; Owner: carbonara
+-- Name: habitantes_id_seq; Type: SEQUENCE SET; Schema: encuestas; Owner: usuario
 --
 
 SELECT pg_catalog.setval('habitantes_id_seq', 1, false);
@@ -3204,7 +3204,7 @@ SELECT pg_catalog.setval('habitantes_id_seq', 1, false);
 SET search_path = public, pg_catalog;
 
 --
--- Name: auditor; Type: TABLE; Schema: public; Owner: carbonara; Tablespace:
+-- Name: auditor; Type: TABLE; Schema: public; Owner: usuario; Tablespace:
 --
 
 CREATE TABLE auditor (
@@ -3217,10 +3217,10 @@ CREATE TABLE auditor (
 );
 
 
-ALTER TABLE public.auditor OWNER TO carbonara;
+ALTER TABLE public.auditor OWNER TO usuario;
 
 --
--- Name: censo_id_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: censo_id_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE censo_id_seq
@@ -3230,17 +3230,17 @@ CREATE SEQUENCE censo_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.censo_id_seq OWNER TO carbonara;
+ALTER TABLE public.censo_id_seq OWNER TO usuario;
 
 --
--- Name: censo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: censo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('censo_id_seq', 1, true);
 
 
 --
--- Name: encuestador_id_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: encuestador_id_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE encuestador_id_seq
@@ -3250,17 +3250,17 @@ CREATE SEQUENCE encuestador_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.encuestador_id_seq OWNER TO carbonara;
+ALTER TABLE public.encuestador_id_seq OWNER TO usuario;
 
 --
--- Name: encuestador_id_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: encuestador_id_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('encuestador_id_seq', 99, true);
 
 
 --
--- Name: menu_id_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: menu_id_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE menu_id_seq
@@ -3270,17 +3270,17 @@ CREATE SEQUENCE menu_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.menu_id_seq OWNER TO carbonara;
+ALTER TABLE public.menu_id_seq OWNER TO usuario;
 
 --
--- Name: menu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: menu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('menu_id_seq', 30, true);
 
 
 --
--- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE roles_id_seq
@@ -3291,17 +3291,17 @@ CREATE SEQUENCE roles_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.roles_id_seq OWNER TO carbonara;
+ALTER TABLE public.roles_id_seq OWNER TO usuario;
 
 --
--- Name: roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('roles_id_seq', 1, false);
 
 
 --
--- Name: tabla10_tabla10_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla10_tabla10_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla10_tabla10_campo1_seq
@@ -3311,17 +3311,17 @@ CREATE SEQUENCE tabla10_tabla10_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla10_tabla10_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla10_tabla10_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla10_tabla10_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla10_tabla10_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla10_tabla10_campo1_seq', 4, true);
 
 
 --
--- Name: tabla11_tabla11_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla11_tabla11_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla11_tabla11_campo1_seq
@@ -3331,17 +3331,17 @@ CREATE SEQUENCE tabla11_tabla11_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla11_tabla11_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla11_tabla11_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla11_tabla11_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla11_tabla11_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla11_tabla11_campo1_seq', 2, true);
 
 
 --
--- Name: tabla12_tabla12_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla12_tabla12_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla12_tabla12_campo1_seq
@@ -3351,17 +3351,17 @@ CREATE SEQUENCE tabla12_tabla12_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla12_tabla12_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla12_tabla12_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla12_tabla12_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla12_tabla12_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla12_tabla12_campo1_seq', 4, true);
 
 
 --
--- Name: tabla13_tabla13_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla13_tabla13_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla13_tabla13_campo1_seq
@@ -3371,17 +3371,17 @@ CREATE SEQUENCE tabla13_tabla13_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla13_tabla13_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla13_tabla13_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla13_tabla13_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla13_tabla13_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla13_tabla13_campo1_seq', 4, true);
 
 
 --
--- Name: tabla14_tabla14_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla14_tabla14_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla14_tabla14_campo1_seq
@@ -3391,17 +3391,17 @@ CREATE SEQUENCE tabla14_tabla14_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla14_tabla14_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla14_tabla14_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla14_tabla14_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla14_tabla14_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla14_tabla14_campo1_seq', 7, true);
 
 
 --
--- Name: tabla18_tabla18_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla18_tabla18_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla18_tabla18_campo1_seq
@@ -3411,17 +3411,17 @@ CREATE SEQUENCE tabla18_tabla18_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla18_tabla18_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla18_tabla18_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla18_tabla18_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla18_tabla18_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla18_tabla18_campo1_seq', 2, true);
 
 
 --
--- Name: tabla21_tabla21_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla21_tabla21_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla21_tabla21_campo1_seq
@@ -3431,17 +3431,17 @@ CREATE SEQUENCE tabla21_tabla21_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla21_tabla21_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla21_tabla21_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla21_tabla21_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla21_tabla21_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla21_tabla21_campo1_seq', 3, true);
 
 
 --
--- Name: tabla22_tabla22_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla22_tabla22_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla22_tabla22_campo1_seq
@@ -3451,17 +3451,17 @@ CREATE SEQUENCE tabla22_tabla22_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla22_tabla22_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla22_tabla22_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla22_tabla22_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla22_tabla22_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla22_tabla22_campo1_seq', 3, true);
 
 
 --
--- Name: tabla2_tabla2_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla2_tabla2_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla2_tabla2_campo1_seq
@@ -3471,17 +3471,17 @@ CREATE SEQUENCE tabla2_tabla2_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla2_tabla2_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla2_tabla2_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla2_tabla2_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla2_tabla2_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla2_tabla2_campo1_seq', 24, true);
 
 
 --
--- Name: tabla4_tabla4_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla4_tabla4_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla4_tabla4_campo1_seq
@@ -3491,17 +3491,17 @@ CREATE SEQUENCE tabla4_tabla4_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla4_tabla4_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla4_tabla4_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla4_tabla4_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla4_tabla4_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla4_tabla4_campo1_seq', 1, true);
 
 
 --
--- Name: tabla5_tabla5_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla5_tabla5_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla5_tabla5_campo1_seq
@@ -3511,17 +3511,17 @@ CREATE SEQUENCE tabla5_tabla5_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla5_tabla5_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla5_tabla5_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla5_tabla5_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla5_tabla5_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla5_tabla5_campo1_seq', 7, true);
 
 
 --
--- Name: tabla6_tabla6_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla6_tabla6_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla6_tabla6_campo1_seq
@@ -3531,17 +3531,17 @@ CREATE SEQUENCE tabla6_tabla6_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla6_tabla6_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla6_tabla6_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla6_tabla6_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla6_tabla6_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla6_tabla6_campo1_seq', 1, true);
 
 
 --
--- Name: tabla7_tabla7_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla7_tabla7_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla7_tabla7_campo1_seq
@@ -3551,17 +3551,17 @@ CREATE SEQUENCE tabla7_tabla7_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla7_tabla7_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla7_tabla7_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla7_tabla7_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla7_tabla7_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla7_tabla7_campo1_seq', 14, true);
 
 
 --
--- Name: tabla8_tabla8_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla8_tabla8_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla8_tabla8_campo1_seq
@@ -3571,17 +3571,17 @@ CREATE SEQUENCE tabla8_tabla8_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla8_tabla8_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla8_tabla8_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla8_tabla8_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla8_tabla8_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla8_tabla8_campo1_seq', 10, true);
 
 
 --
--- Name: tabla9_tabla9_campo1_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: tabla9_tabla9_campo1_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE tabla9_tabla9_campo1_seq
@@ -3591,17 +3591,17 @@ CREATE SEQUENCE tabla9_tabla9_campo1_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabla9_tabla9_campo1_seq OWNER TO carbonara;
+ALTER TABLE public.tabla9_tabla9_campo1_seq OWNER TO usuario;
 
 --
--- Name: tabla9_tabla9_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: tabla9_tabla9_campo1_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('tabla9_tabla9_campo1_seq', 8, true);
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE users_id_seq
@@ -3611,17 +3611,17 @@ CREATE SEQUENCE users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO carbonara;
+ALTER TABLE public.users_id_seq OWNER TO usuario;
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('users_id_seq', 3, true);
 
 
 --
--- Name: usuarios_id_seq; Type: SEQUENCE; Schema: public; Owner: carbonara
+-- Name: usuarios_id_seq; Type: SEQUENCE; Schema: public; Owner: usuario
 --
 
 CREATE SEQUENCE usuarios_id_seq
@@ -3631,10 +3631,10 @@ CREATE SEQUENCE usuarios_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.usuarios_id_seq OWNER TO carbonara;
+ALTER TABLE public.usuarios_id_seq OWNER TO usuario;
 
 --
--- Name: usuarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: carbonara
+-- Name: usuarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
 SELECT pg_catalog.setval('usuarios_id_seq', 7, true);
@@ -3643,175 +3643,175 @@ SELECT pg_catalog.setval('usuarios_id_seq', 7, true);
 SET search_path = cc1, pg_catalog;
 
 --
--- Name: id; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: id; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE menu ALTER COLUMN id SET DEFAULT nextval('menu_id_seq'::regclass);
 
 
 --
--- Name: tabla1_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla1_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla0 ALTER COLUMN tabla1_campo1 SET DEFAULT nextval('tabla1_tabla1_campo1_seq'::regclass);
 
 
 --
--- Name: tabla1_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla1_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla1 ALTER COLUMN tabla1_campo1 SET DEFAULT nextval('tabla1_tabla1_campo1_seq1'::regclass);
 
 
 --
--- Name: tabla10_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla10_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla10 ALTER COLUMN tabla10_campo1 SET DEFAULT nextval('tabla10_tabla10_campo1_seq'::regclass);
 
 
 --
--- Name: tabla11_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla11_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla11 ALTER COLUMN tabla11_campo1 SET DEFAULT nextval('tabla11_tabla11_campo1_seq'::regclass);
 
 
 --
--- Name: tabla12_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla12_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla12 ALTER COLUMN tabla12_campo1 SET DEFAULT nextval('tabla12_tabla12_campo1_seq'::regclass);
 
 
 --
--- Name: tabla13_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla13_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla13 ALTER COLUMN tabla13_campo1 SET DEFAULT nextval('tabla13_tabla13_campo1_seq'::regclass);
 
 
 --
--- Name: tabla14_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla14_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla14 ALTER COLUMN tabla14_campo1 SET DEFAULT nextval('tabla14_tabla14_campo1_seq'::regclass);
 
 
 --
--- Name: tabla15_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla15_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla15 ALTER COLUMN tabla15_campo1 SET DEFAULT nextval('tabla15_tabla15_campo1_seq'::regclass);
 
 
 --
--- Name: tabla16_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla16_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla16 ALTER COLUMN tabla16_campo1 SET DEFAULT nextval('tabla16_tabla16_campo1_seq'::regclass);
 
 
 --
--- Name: tabla17_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla17_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla17 ALTER COLUMN tabla17_campo1 SET DEFAULT nextval('tabla17_tabla17_campo1_seq'::regclass);
 
 
 --
--- Name: tabla18_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla18_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla18 ALTER COLUMN tabla18_campo1 SET DEFAULT nextval('tabla18_campo1_seq1'::regclass);
 
 
 --
--- Name: tabla19_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla19_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla19 ALTER COLUMN tabla19_campo1 SET DEFAULT nextval('tabla19_campo1_seq'::regclass);
 
 
 --
--- Name: tabla2_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla2_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla2 ALTER COLUMN tabla2_campo1 SET DEFAULT nextval('tabla2_tabla2_campo1_seq'::regclass);
 
 
 --
--- Name: tabla20_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla20_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla20 ALTER COLUMN tabla20_campo1 SET DEFAULT nextval('tabla20_tabla20_campo1_seq'::regclass);
 
 
 --
--- Name: tabla21_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla21_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla21 ALTER COLUMN tabla21_campo1 SET DEFAULT nextval('tabla21_campo1_seq1'::regclass);
 
 
 --
--- Name: tabla22_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla22_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla22 ALTER COLUMN tabla22_campo1 SET DEFAULT nextval('tabla22_campo1_seq1'::regclass);
 
 
 --
--- Name: tabla3_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla3_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla3 ALTER COLUMN tabla3_campo1 SET DEFAULT nextval('tabla3_tabla3_campo1_seq'::regclass);
 
 
 --
--- Name: tabla4_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla4_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla4 ALTER COLUMN tabla4_campo1 SET DEFAULT nextval('tabla4_tabla4_campo1_seq'::regclass);
 
 
 --
--- Name: tabla5_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla5_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla5 ALTER COLUMN tabla5_campo1 SET DEFAULT nextval('tabla5_tabla5_campo1_seq'::regclass);
 
 
 --
--- Name: tabla6_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla6_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla6 ALTER COLUMN tabla6_campo1 SET DEFAULT nextval('tabla6_tabla6_campo1_seq'::regclass);
 
 
 --
--- Name: tabla7_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla7_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla7 ALTER COLUMN tabla7_campo1 SET DEFAULT nextval('tabla7_tabla7_campo1_seq'::regclass);
 
 
 --
--- Name: tabla8_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla8_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla8 ALTER COLUMN tabla8_campo1 SET DEFAULT nextval('tabla8_tabla8_campo1_seq'::regclass);
 
 
 --
--- Name: tabla9_campo1; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: tabla9_campo1; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE tabla9 ALTER COLUMN tabla9_campo1 SET DEFAULT nextval('tabla9_tabla9_campo1_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: cc1; Owner: carbonara
+-- Name: id; Type: DEFAULT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE usuarios ALTER COLUMN id SET DEFAULT nextval('usuario_id_seq'::regclass);
@@ -3820,14 +3820,14 @@ ALTER TABLE usuarios ALTER COLUMN id SET DEFAULT nextval('usuario_id_seq'::regcl
 SET search_path = encuestas, pg_catalog;
 
 --
--- Name: id; Type: DEFAULT; Schema: encuestas; Owner: carbonara
+-- Name: id; Type: DEFAULT; Schema: encuestas; Owner: usuario
 --
 
 ALTER TABLE censo ALTER COLUMN id SET DEFAULT nextval('censo_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: encuestas; Owner: carbonara
+-- Name: id; Type: DEFAULT; Schema: encuestas; Owner: usuario
 --
 
 ALTER TABLE habitantes ALTER COLUMN id SET DEFAULT nextval('habitantes_id_seq'::regclass);
@@ -3836,7 +3836,7 @@ ALTER TABLE habitantes ALTER COLUMN id SET DEFAULT nextval('habitantes_id_seq'::
 SET search_path = auditoria, pg_catalog;
 
 --
--- Data for Name: historico; Type: TABLE DATA; Schema: auditoria; Owner: carbonara
+-- Data for Name: historico; Type: TABLE DATA; Schema: auditoria; Owner: usuario
 --
 
 
@@ -3844,13 +3844,13 @@ SET search_path = auditoria, pg_catalog;
 SET search_path = cc1, pg_catalog;
 
 --
--- Data for Name: crear_usuarios; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: crear_usuarios; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 
 
 --
--- Data for Name: menu; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: menu; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO menu VALUES (20, 'crearmenu', 'Menú', 3, 'admin', 'admin', 21, 2, true, 1, 'menuClick', '', 'Administración->Menú', '2010-08-21', true, 1, '127.0.0.1');
@@ -3912,13 +3912,13 @@ INSERT INTO menu VALUES (101, 'tabla17', 'Voceros', 55, 'basicas_cc', NULL, 52, 
 
 
 --
--- Data for Name: tabla0; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla0; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 
 
 --
--- Data for Name: tabla1; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla1; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla1 VALUES (2, 'Abogado', '2010-10-22', true, true);
@@ -3937,7 +3937,7 @@ INSERT INTO tabla1 VALUES (14, 'Universitario', '2010-10-22', true, true);
 
 
 --
--- Data for Name: tabla10; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla10; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla10 VALUES (2, 'Alquiler', true, '2010-08-25', true);
@@ -3946,14 +3946,14 @@ INSERT INTO tabla10 VALUES (4, 'Herencia', true, '2010-08-25', true);
 
 
 --
--- Data for Name: tabla11; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla11; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla11 VALUES (2, 'Bloque', true, '2010-08-25', true);
 
 
 --
--- Data for Name: tabla12; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla12; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla12 VALUES (37, 'Vivienda', '2010-08-25', true);
@@ -3963,7 +3963,7 @@ INSERT INTO tabla12 VALUES (2, 'Unidad Administrativa Y Financiera', '2010-09-11
 
 
 --
--- Data for Name: tabla13; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla13; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla13 VALUES (2, 'Calle Dr Ramon Parra Picon', '2010-10-22', true, true);
@@ -3976,7 +3976,7 @@ INSERT INTO tabla13 VALUES (8, 'Pedregal', '2010-10-22', true, true);
 
 
 --
--- Data for Name: tabla14; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla14; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla14 VALUES (5, 6, 'Casa De Laura', 8.6040892106067872, -71.190955638885498, '2010-07-22', true, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -3988,19 +3988,19 @@ INSERT INTO tabla14 VALUES (15, 4, 'Pepita', 8.6069678821908902, -71.19054794311
 
 
 --
--- Data for Name: tabla15; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla15; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 
 
 --
--- Data for Name: tabla16; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla16; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 
 
 --
--- Data for Name: tabla17; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla17; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla17 VALUES (23, '11952572', 2, '2010-10-22', true);
@@ -4008,7 +4008,7 @@ INSERT INTO tabla17 VALUES (24, '3993840', 3, '2010-10-22', true);
 
 
 --
--- Data for Name: tabla18; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla18; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla18 VALUES (2, 'Organismo Público', '2010-10-21', true, true);
@@ -4020,13 +4020,13 @@ INSERT INTO tabla18 VALUES (6, 'Discapacitado', '2010-10-23', true, true);
 
 
 --
--- Data for Name: tabla19; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla19; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 
 
 --
--- Data for Name: tabla2; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla2; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla2 VALUES (3, 'Carpintero', '2010-08-25', true, true);
@@ -4088,7 +4088,7 @@ INSERT INTO tabla2 VALUES (62, 'Administradora', '2010-09-06', false, true);
 
 
 --
--- Data for Name: tabla20; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla20; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla20 VALUES (1, '000000000', 'Administrador', 'Administrador', NULL, NULL, 'N', NULL, NULL, NULL, NULL, NULL, '2010-07-31', true, '0', false, false, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL, false, NULL, false, NULL, NULL, NULL, false, NULL, false, false, false, NULL, false, NULL, NULL, false, NULL, false, NULL, false, NULL, false, NULL, NULL, NULL, NULL, false, NULL, false, NULL, false, NULL, false, NULL, false, NULL, false, false, false, NULL, false, NULL, false, false, NULL, false, NULL);
@@ -4096,7 +4096,7 @@ INSERT INTO tabla20 VALUES (2, '111111111', 'Usuario', 'de Pruebas', NULL, NULL,
 
 
 --
--- Data for Name: tabla21; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla21; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla21 VALUES (1, 'No Percibe', '2010-10-21', true, true);
@@ -4105,7 +4105,7 @@ INSERT INTO tabla21 VALUES (3, '1001 A 2000', '2010-10-21', true, true);
 
 
 --
--- Data for Name: tabla22; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla22; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla22 VALUES (1, 'Soltero', '2010-10-21', true, true);
@@ -4116,7 +4116,7 @@ INSERT INTO tabla22 VALUES (5, 'Viudo', '2010-10-23', true, true);
 
 
 --
--- Data for Name: tabla3; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla3; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla3 VALUES (2, 'Licenciado En Educación', '2010-07-17', true, true);
@@ -4124,7 +4124,7 @@ INSERT INTO tabla3 VALUES (4, 'Sinverguenza', '2010-09-11', true, false);
 
 
 --
--- Data for Name: tabla4; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla4; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla4 VALUES (2, 'Jefe Del Hogar', '2010-07-17', true, true);
@@ -4136,7 +4136,7 @@ INSERT INTO tabla4 VALUES (12, 'Padre/Madre', '2010-10-23', true, true);
 
 
 --
--- Data for Name: tabla5; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla5; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla5 VALUES (2, 'Baloncesto', '2010-07-17', true, true);
@@ -4154,13 +4154,13 @@ INSERT INTO tabla5 VALUES (10, 'Sofbol Femenino', '2010-08-25', false, true);
 
 
 --
--- Data for Name: tabla6; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla6; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 
 
 --
--- Data for Name: tabla7; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla7; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla7 VALUES (2, 'Casa', true, '2010-08-25', true);
@@ -4172,7 +4172,7 @@ INSERT INTO tabla7 VALUES (4, 'Apartamento', true, '2010-08-25', false);
 
 
 --
--- Data for Name: tabla8; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla8; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO tabla8 VALUES (4, 'Ceramica', true, '2010-08-25', true);
@@ -4182,13 +4182,13 @@ INSERT INTO tabla8 VALUES (3, 'Cemento', true, '2010-08-25', false);
 
 
 --
--- Data for Name: tabla9; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: tabla9; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 
 
 --
--- Data for Name: usuario_menu; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: usuario_menu; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO usuario_menu VALUES (9, 19);
@@ -4351,7 +4351,7 @@ INSERT INTO usuario_menu VALUES (17, 2);
 
 
 --
--- Data for Name: usuarios; Type: TABLE DATA; Schema: cc1; Owner: carbonara
+-- Data for Name: usuarios; Type: TABLE DATA; Schema: cc1; Owner: usuario
 --
 
 INSERT INTO usuarios VALUES (8, '11952572', 'cesar', '6f597c1ddab467f7bf5498aad1b41899', 'main', 1, '2010-08-21', true, 1, '127.0.0.1');
@@ -4362,19 +4362,19 @@ INSERT INTO usuarios VALUES (2, '111111111', 'p4a', '66f03bee34f677db5c3c56b2834
 SET search_path = encuestas, pg_catalog;
 
 --
--- Data for Name: censo; Type: TABLE DATA; Schema: encuestas; Owner: carbonara
+-- Data for Name: censo; Type: TABLE DATA; Schema: encuestas; Owner: usuario
 --
 
 
 --
--- Data for Name: habitantes; Type: TABLE DATA; Schema: encuestas; Owner: carbonara
+-- Data for Name: habitantes; Type: TABLE DATA; Schema: encuestas; Owner: usuario
 --
 
 
 SET search_path = public, pg_catalog;
 
 --
--- Data for Name: auditor; Type: TABLE DATA; Schema: public; Owner: carbonara
+-- Data for Name: auditor; Type: TABLE DATA; Schema: public; Owner: usuario
 --
 
 INSERT INTO auditor VALUES (8, 'INSERT', '2010-10-22 01:47:22.904162-04:30', 'tabla1', '127.0.0.1', '1');
@@ -4393,7 +4393,7 @@ INSERT INTO auditor VALUES (8, 'UPDATE', '2010-10-22 01:52:49.450928-04:30', 'ta
 SET search_path = cc1, pg_catalog;
 
 --
--- Name: crear_usuarios_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: crear_usuarios_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY crear_usuarios
@@ -4401,7 +4401,7 @@ ALTER TABLE ONLY crear_usuarios
 
 
 --
--- Name: habitante_ukey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: habitante_ukey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla20
@@ -4409,7 +4409,7 @@ ALTER TABLE ONLY tabla20
 
 
 --
--- Name: menu_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: menu_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY menu
@@ -4417,7 +4417,7 @@ ALTER TABLE ONLY menu
 
 
 --
--- Name: tabla10_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla10_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla10
@@ -4425,7 +4425,7 @@ ALTER TABLE ONLY tabla10
 
 
 --
--- Name: tabla11_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla11_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla11
@@ -4433,7 +4433,7 @@ ALTER TABLE ONLY tabla11
 
 
 --
--- Name: tabla12_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla12_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla12
@@ -4441,7 +4441,7 @@ ALTER TABLE ONLY tabla12
 
 
 --
--- Name: tabla13_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla13_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla13
@@ -4449,7 +4449,7 @@ ALTER TABLE ONLY tabla13
 
 
 --
--- Name: tabla14_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla14_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla14
@@ -4457,7 +4457,7 @@ ALTER TABLE ONLY tabla14
 
 
 --
--- Name: tabla15_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla15_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla15
@@ -4465,7 +4465,7 @@ ALTER TABLE ONLY tabla15
 
 
 --
--- Name: tabla16_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla16_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla16
@@ -4473,7 +4473,7 @@ ALTER TABLE ONLY tabla16
 
 
 --
--- Name: tabla17_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla17_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla17
@@ -4481,7 +4481,7 @@ ALTER TABLE ONLY tabla17
 
 
 --
--- Name: tabla18_pkey1; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla18_pkey1; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla18
@@ -4489,7 +4489,7 @@ ALTER TABLE ONLY tabla18
 
 
 --
--- Name: tabla19_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla19_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla19
@@ -4497,7 +4497,7 @@ ALTER TABLE ONLY tabla19
 
 
 --
--- Name: tabla1_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla1_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla0
@@ -4505,7 +4505,7 @@ ALTER TABLE ONLY tabla0
 
 
 --
--- Name: tabla1_pkey1; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla1_pkey1; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla1
@@ -4513,7 +4513,7 @@ ALTER TABLE ONLY tabla1
 
 
 --
--- Name: tabla20_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla20_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla20
@@ -4521,7 +4521,7 @@ ALTER TABLE ONLY tabla20
 
 
 --
--- Name: tabla21_pkey1; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla21_pkey1; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla21
@@ -4529,7 +4529,7 @@ ALTER TABLE ONLY tabla21
 
 
 --
--- Name: tabla22_pkey1; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla22_pkey1; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla22
@@ -4537,7 +4537,7 @@ ALTER TABLE ONLY tabla22
 
 
 --
--- Name: tabla2_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla2_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla2
@@ -4545,7 +4545,7 @@ ALTER TABLE ONLY tabla2
 
 
 --
--- Name: tabla3_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla3_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla3
@@ -4553,7 +4553,7 @@ ALTER TABLE ONLY tabla3
 
 
 --
--- Name: tabla4_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla4_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla4
@@ -4561,7 +4561,7 @@ ALTER TABLE ONLY tabla4
 
 
 --
--- Name: tabla5_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla5_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla5
@@ -4569,7 +4569,7 @@ ALTER TABLE ONLY tabla5
 
 
 --
--- Name: tabla6_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla6_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla6
@@ -4577,7 +4577,7 @@ ALTER TABLE ONLY tabla6
 
 
 --
--- Name: tabla7_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla7_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla7
@@ -4585,7 +4585,7 @@ ALTER TABLE ONLY tabla7
 
 
 --
--- Name: tabla8_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla8_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla8
@@ -4593,7 +4593,7 @@ ALTER TABLE ONLY tabla8
 
 
 --
--- Name: tabla9_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: tabla9_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY tabla9
@@ -4601,7 +4601,7 @@ ALTER TABLE ONLY tabla9
 
 
 --
--- Name: usuario_menu_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: usuario_menu_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY usuario_menu
@@ -4609,7 +4609,7 @@ ALTER TABLE ONLY usuario_menu
 
 
 --
--- Name: usuario_pkey; Type: CONSTRAINT; Schema: cc1; Owner: carbonara; Tablespace:
+-- Name: usuario_pkey; Type: CONSTRAINT; Schema: cc1; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY usuarios
@@ -4619,7 +4619,7 @@ ALTER TABLE ONLY usuarios
 SET search_path = encuestas, pg_catalog;
 
 --
--- Name: censo_fkey; Type: CONSTRAINT; Schema: encuestas; Owner: carbonara; Tablespace:
+-- Name: censo_fkey; Type: CONSTRAINT; Schema: encuestas; Owner: usuario; Tablespace:
 --
 
 ALTER TABLE ONLY censo
@@ -4629,7 +4629,7 @@ ALTER TABLE ONLY censo
 SET search_path = cc1, pg_catalog;
 
 --
--- Name: auditor; Type: TRIGGER; Schema: cc1; Owner: carbonara
+-- Name: auditor; Type: TRIGGER; Schema: cc1; Owner: usuario
 --
 
 CREATE TRIGGER auditor
@@ -4641,7 +4641,7 @@ CREATE TRIGGER auditor
 SET search_path = encuestas, pg_catalog;
 
 --
--- Name: auditor; Type: TRIGGER; Schema: encuestas; Owner: carbonara
+-- Name: auditor; Type: TRIGGER; Schema: encuestas; Owner: usuario
 --
 
 CREATE TRIGGER auditor
@@ -4653,7 +4653,7 @@ CREATE TRIGGER auditor
 SET search_path = cc1, pg_catalog;
 
 --
--- Name: fk_menu; Type: FK CONSTRAINT; Schema: cc1; Owner: carbonara
+-- Name: fk_menu; Type: FK CONSTRAINT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE ONLY usuario_menu
@@ -4661,7 +4661,7 @@ ALTER TABLE ONLY usuario_menu
 
 
 --
--- Name: fk_usuario; Type: FK CONSTRAINT; Schema: cc1; Owner: carbonara
+-- Name: fk_usuario; Type: FK CONSTRAINT; Schema: cc1; Owner: usuario
 --
 
 ALTER TABLE ONLY usuario_menu
@@ -4671,7 +4671,7 @@ ALTER TABLE ONLY usuario_menu
 SET search_path = encuestas, pg_catalog;
 
 --
--- Name: censo_estado_civil_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: carbonara
+-- Name: censo_estado_civil_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: usuario
 --
 
 ALTER TABLE ONLY censo
@@ -4679,7 +4679,7 @@ ALTER TABLE ONLY censo
 
 
 --
--- Name: censo_grado_instruccion_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: carbonara
+-- Name: censo_grado_instruccion_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: usuario
 --
 
 ALTER TABLE ONLY censo
@@ -4687,7 +4687,7 @@ ALTER TABLE ONLY censo
 
 
 --
--- Name: censo_ocupacion_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: carbonara
+-- Name: censo_ocupacion_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: usuario
 --
 
 ALTER TABLE ONLY censo
@@ -4695,7 +4695,7 @@ ALTER TABLE ONLY censo
 
 
 --
--- Name: censo_parentesco_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: carbonara
+-- Name: censo_parentesco_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: usuario
 --
 
 ALTER TABLE ONLY censo
@@ -4703,7 +4703,7 @@ ALTER TABLE ONLY censo
 
 
 --
--- Name: censo_profesion_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: carbonara
+-- Name: censo_profesion_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: usuario
 --
 
 ALTER TABLE ONLY censo
@@ -4711,7 +4711,7 @@ ALTER TABLE ONLY censo
 
 
 --
--- Name: censo_sector_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: carbonara
+-- Name: censo_sector_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: usuario
 --
 
 ALTER TABLE ONLY censo
@@ -4719,7 +4719,7 @@ ALTER TABLE ONLY censo
 
 
 --
--- Name: censo_situacion_laboral_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: carbonara
+-- Name: censo_situacion_laboral_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: usuario
 --
 
 ALTER TABLE ONLY censo
@@ -4727,7 +4727,7 @@ ALTER TABLE ONLY censo
 
 
 --
--- Name: censo_vivienda_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: carbonara
+-- Name: censo_vivienda_fkey; Type: FK CONSTRAINT; Schema: encuestas; Owner: usuario
 --
 
 ALTER TABLE ONLY censo
@@ -4735,45 +4735,45 @@ ALTER TABLE ONLY censo
 
 
 --
--- Name: cc1; Type: ACL; Schema: -; Owner: carbonara
+-- Name: cc1; Type: ACL; Schema: -; Owner: usuario
 --
 
 REVOKE ALL ON SCHEMA cc1 FROM PUBLIC;
-REVOKE ALL ON SCHEMA cc1 FROM carbonara;
-GRANT ALL ON SCHEMA cc1 TO carbonara;
+REVOKE ALL ON SCHEMA cc1 FROM usuario;
+GRANT ALL ON SCHEMA cc1 TO usuario;
 GRANT ALL ON SCHEMA cc1 TO postgres;
 GRANT ALL ON SCHEMA cc1 TO PUBLIC;
 
 
 --
--- Name: encuestas; Type: ACL; Schema: -; Owner: carbonara
+-- Name: encuestas; Type: ACL; Schema: -; Owner: usuario
 --
 
 REVOKE ALL ON SCHEMA encuestas FROM PUBLIC;
-REVOKE ALL ON SCHEMA encuestas FROM carbonara;
-GRANT ALL ON SCHEMA encuestas TO carbonara;
+REVOKE ALL ON SCHEMA encuestas FROM usuario;
+GRANT ALL ON SCHEMA encuestas TO usuario;
 GRANT USAGE ON SCHEMA encuestas TO consultor;
 
 
 --
--- Name: public; Type: ACL; Schema: -; Owner: carbonara
+-- Name: public; Type: ACL; Schema: -; Owner: usuario
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM carbonara;
-GRANT ALL ON SCHEMA public TO carbonara;
+REVOKE ALL ON SCHEMA public FROM usuario;
+GRANT ALL ON SCHEMA public TO usuario;
 GRANT ALL ON SCHEMA public TO postgres;
 GRANT USAGE ON SCHEMA public TO consultor;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
 --
--- Name: habitantes; Type: ACL; Schema: encuestas; Owner: carbonara
+-- Name: habitantes; Type: ACL; Schema: encuestas; Owner: usuario
 --
 
 REVOKE ALL ON TABLE habitantes FROM PUBLIC;
-REVOKE ALL ON TABLE habitantes FROM carbonara;
-GRANT ALL ON TABLE habitantes TO carbonara;
+REVOKE ALL ON TABLE habitantes FROM usuario;
+GRANT ALL ON TABLE habitantes TO usuario;
 GRANT SELECT ON TABLE habitantes TO consultor;
 
 
