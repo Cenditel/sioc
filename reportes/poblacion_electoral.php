@@ -86,7 +86,8 @@
 ob_end_clean();
 require_once("./fpdf/poblacion_electoral.class");
 
-$str_conexao='dbname=apoyacomunidad port=5432 user=carbonara password=carbonara';
+//$str_conexao='dbname=sioc_bd port=5432 user=usuario password=usuario';
+$str_conexao='dbname='.P4A_DSN_DB.' port='.P4A_DSN_PORT.' user='.P4A_DSN_USER.' password='.P4A_DSN_PASSWORD.'';
 $conexao=pg_connect($str_conexao) or die('Falló la conexión a BD!');
 
 // variables

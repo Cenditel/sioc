@@ -86,7 +86,8 @@
 ob_end_clean();
 require_once("./fpdf/constancia_concubinato.class");
 
-$str_conexao='dbname=apoyacomunidad port=5432 user=carbonara password=carbonara';
+//$str_conexao='dbname=sioc_bd port=5432 user=usuario password=usuario';
+$str_conexao='dbname='.P4A_DSN_DB.' port='.P4A_DSN_PORT.' user='.P4A_DSN_USER.' password='.P4A_DSN_PASSWORD.'';
 $conexao=pg_connect($str_conexao) or die('Falló la conexión a BD!');
 
 $queryFirmas = "SELECT (nombre||' '||apellido) AS persona, tabla12_campo2 AS unidad FROM cc1.tabla17 INNER JOIN encuestas.censo ON (tabla20_campo2=cedula) INNER JOIN cc1.tabla12 USING (tabla12_campo1) ORDER BY tabla12_campo2 ASC";
