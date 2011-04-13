@@ -73,7 +73,7 @@ Descargar el código fuente del SIOC
 
     Para esto debe ejecutar el siguiente comando:
 
-     # svn co http://plataforma.cenditel.gob.ve/svn/plataforma/proyectosInstitucionales/renasen/sioc/trunk/ sioc
+     # svn co http://plataforma.cenditel.gob.ve/svn/plataforma/proyectosInstitucionales/renasen/sioc/tag/0.1/ sioc
 
      NOTA: Sí desea colocarle el nombre el suyo propio, deberá cambiarlo en el variable P4A_DSN del
      proyecto, que está en el index.php de la carpeta raíz de la aplicación.
