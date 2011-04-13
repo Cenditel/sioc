@@ -1,0 +1,198 @@
+
+Proceso de instalación
+
+
+Requisitos previos:
+
+    Instalar el servidor de base de datos PostgreSQL
+
+     # aptitude install postgresql
+
+    Instalar el servidor de Web Apache
+
+     # aptitude install apache2
+
+    Instalar soporte a librerías de PHP 5
+
+     # aptitude install php5 libapache2-mod-php5 php-fpdf php5-gd php5-pgsql
+
+    Instalar utilidades extras para el proceso de instalación
+
+     # aptitude install subversion makepasswd
+
+    Descargar el instalador del Framework P4A en su versión 3.4.1
+
+     # wget http://ufpr.dl.sourceforge.net/project/p4a/p4a/3.4.1/p4a_3.4.1-1_all.deb
+
+    Ejecute la instalación
+
+     # dpkg -i p4a_3.4.1-1_all.deb
+
+
+Configurar las librerías PHP con el servidor Apache
+
+    Agregue la ruta de la librería php-fpdf y p4a dentro del archivo 'php.ini' 
+
+     # nano /etc/php5/apache2/php.ini
+
+        Debe ubicar la variable 'include_path' que debe estar mostrarse por defecto así:
+         ;include_path = ".:/usr/share/php"
+
+        Y debe cambiarse exactamente de la siguiente forma:
+         include_path = ".:/usr/share/php:/usr/share/php/p4a:/usr/share/php/fpdf"
+
+    Luego presione Crtl+X y luego la tecla S para guardar los cambios
+
+    Entonces cargue de nuevo las configuraciones realizadas al servidor Web
+
+     # /etc/init.d/apache2 reload
+
+
+Comprobar las configuraciones 
+
+    Para comprobar si las configuraciones previas fueron tomadas por el servidor Web Apache, 
+    debe crear un programa PHP que nos ofrecerá la información necesaria:
+
+     # nano /var/www/info.php
+
+    Y agregue la siguiente sintaxis:
+
+     <?php phpinfo(); ?>
+
+    Luego presione Crtl+X y luego la tecla S para guardar los cambios, entonces acceda por su 
+    navegador Web a la siguiente dirección http://localhost/info.php
+
+    En esta pagina nos mostrara mucha información sobre los módulos de PHP habilitados par e servidor Apache:
+
+     * pgsql (PostgreSQL Support), sino esta disponible no podrá conectarse al servidor de base de datos Postgres.
+     * include_path, debe tener el siguiente valor ".:/usr/share/php:/usr/share/php/p4a:/usr/share/php/fpdf"
+
+
+Descargar el código fuente del SIOC
+
+
+    Para esto debe ejecutar el siguiente comando:
+
+     # svn co http://plataforma.cenditel.gob.ve/svn/plataforma/proyectosInstitucionales/renasen/sioc/trunk/ sioc
+
+     NOTA: Sí desea colocarle el nombre el suyo propio, deberá cambiarlo en el variable P4A_DSN del
+     proyecto, que está en el index.php de la carpeta raíz de la aplicación.
+
+      # nano /var/www/sioc/index.php
+
+     Definir permisos de escritura al directorio raiz. TODO
+
+      # chown root.www-data -R /var/www/sioc/
+
+     Definir permisos de escritura a los directorios uploads/tmp. TODO
+
+      # chmod -R /var/www/sioc/uploads/tmp
+
+Configuraciones de la Base de Datos 
+
+    Debe iniciar sesión como usuario administrador postgresql: 
+
+     # su postgres
+
+    Crea el usuario de conexión a la base de datos por defecto llamado 'usuario' 
+    y con la contraseña 'usuario'
+
+     postgres$ createuser usuario -P -E
+
+    Crea el usuario de conexión a la base de datos por defecto llamado 'consultor' 
+    y con la contraseña 'consultor'
+
+     postgres$ createuser consultor -P -E
+
+
+    Crear una BD en postgresql llamada 'apoyacomunidad' 
+
+     postgres$ createdb apoyacomunidad -O usuario -E UTF8
+
+    Importar estructura de datos
+
+        Ejecutar el script ubicado en la carpeta _private para crear la estructura básica 
+        de la BD y generar unos datos iniciales. 
+
+         postgres$ psql -d apoyacomunidad -f /var/www/sioc/_private/dump.datosbasicos.sql                  
+
+        Encontrará algunos datos de prueba que le servirán para darse una idea de qué es el sistema y
+        cómo utilizarlo.
+
+        Se crea un usuario en el sistema SIOC con amplios privilegios de administración 
+        por defecto llamado 'admin' y con la contraseña 'admin'
+
+    Cerrar sesión de postgres
+
+     postgres$ exit
+
+    Configuraciones de seguridad
+
+     # nano /etc/postgresql/8.3/main/pg_hba.conf
+
+     Cambiamos la línea
+
+      # IPv4 local connections:
+      host all all 127.0.0.1/32 md5
+
+     por
+
+      # IPv4 local connections:
+      host apoyacomunidad usuario 127.0.0.1/32 md5
+      host apoyacomunidad consultor 127.0.0.1/32 md5
+
+     para que no nos pida password y así poder entrar y crear usuarios
+    (después se puede cambiar)
+
+
+    Configuraciones de servidor PostgreSQL
+
+        Edite el archivo /etc/postgresql/8.3/main/postgresql.conf y modifique la sentencia 'listen_addresses' 
+        para que el servidor escuche una interfaz de red determinada (en cuyo caso habrá que indicar la dirección ip) 
+        o todas (indicadas con "'*'").
+
+         # nano /etc/postgresql/8.3/main/postgresql.conf 
+
+    Reinicie el servidor PostgreSQL
+
+     # /etc/init.d/postgresql-8.3 restart
+
+Ejecute el SIOC
+    Entonces acceda por su navegador Web a la siguiente 
+    dirección http://localhost/sioc/ e inicie sesión con el usuario y contraseña 'admin'
+
+
+Recomendaciones de seguridad
+    
+Cambiar contraseñas de usuarios
+
+    Es recomendado por razones de seguridad cambiar las clave del usuario que accede desde el sistema a la base de datos "apoyacomunidad", para esto debe ejecutar los siguientes comandos:
+
+        1. Es recomendable ejecutar el anterior comando para que genere de manera aleatoria la contraseña del para el usuario. Copia la cadena generada y úsese como contraseña de los usuarios.
+
+         # makepasswd
+
+        2. Este comando nos permite cambiarnos de usuario "root" a el usuario "postgres".
+
+         # su postgres
+          
+        3. Este comando nos permite establecer una conexión al servidor de base de datos con el usuario administrador de base de datos "postgres".
+
+         postgres$ psql apoyacomunidad postgres
+          
+        4. Este comando SQL nos permite cambiar la contraseña de un usuario de base de datos, la frase que esta entre comillas simples 'NUEVA_CONTRASEÑA_USUARIO' 
+        usted la va a sustituir por la contraseña nueva que desee establecer no olvide que mientras mas larga, variada entre números y letras, será más difícil que 
+        le determinen cual es su contraseña de conexión a base de datos. 
+
+        NOTA: Puede copiar la cadena generada en el paso 1 y úsese como contraseña del usuario
+
+         apoyacomunidad=# alter user usuario with password 'NUEVA_CONTRASEÑA_USUARIO' ; 
+          
+        5. Este comando le permite desconectarse del servidor de base de datos.
+
+         apoyacomunidad=# \q
+          
+        6. Este comando le permite cerrar la sesión del usuario "postgres".
+
+         postgres$ exit
+            
