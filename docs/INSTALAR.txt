@@ -75,18 +75,21 @@ Descargar el código fuente del SIOC
 
      # svn co http://plataforma.cenditel.gob.ve/svn/plataforma/proyectosInstitucionales/renasen/sioc/tag/0.1/ sioc
 
-     NOTA: Sí desea colocarle el nombre el suyo propio, deberá cambiarlo en el variable P4A_DSN del
-     proyecto, que está en el index.php de la carpeta raíz de la aplicación.
+     NOTA: Sí desea cambiar su configuración de conexión a la base de datos, 
+     deberá cambiar las constantes definidas con el prefijo "P4A_DSN_" 
+     las cuales son concatenadas con la configuración de conexión definida 
+     con el nombre "P4A_DSN" del proyecto, que está en el index.php 
+     de la carpeta raíz de la aplicación.
 
       # nano /var/www/sioc/index.php
 
-     Definir permisos de escritura al directorio raiz. TODO
+     Definir el dueño y grupo del directorio raíz del SIOC.
 
       # chown root.www-data -R /var/www/sioc/
 
-     Definir permisos de escritura a los directorios uploads/tmp. TODO
+     Definir permisos de escritura a los directorios uploads/tmp.
 
-      # chmod -R /var/www/sioc/uploads/tmp
+      # chmod -R u=rwX,go=rX /var/www/sioc/uploads/
 
 Configuraciones de la Base de Datos 
 
