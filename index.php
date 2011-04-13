@@ -99,13 +99,12 @@ define("P4A_DSN_PASSWORD", "usuario");
 define("P4A_DSN_HOST", "localhost");
 
 // Database Name 
-define("P4A_DSN_DB", "sioc_bd");
+define("P4A_DSN_DB", "apoyacomunidad");
 
 // Database Port Connection
 define("P4A_DSN_PORT", "5432");
 
 // Connect to the database (if you want you can add "?charset=YOURCHARSET" to the DSN)
-//define("P4A_DSN", 'pgsql://usuario:usuario@localhost/apoyacomunidad');
 define("P4A_DSN", "".P4A_DSN_ENGINEDB."://".P4A_DSN_USER.":".P4A_DSN_PASSWORD."@".P4A_DSN_HOST."/".P4A_DSN_DB."");
 
 // Enable logging and profiling of all DB actions
